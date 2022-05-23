@@ -1,6 +1,5 @@
-# Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms
+# Evaluation Model for "Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms"
 
-## Description
 This repository contains the evaluation model for the paper
 
 Jan Steffen Becker, Björn Koopmann and Ingo Stierand: *"Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms"*, submitted to FMICS 2022
@@ -26,9 +25,7 @@ The repository contains only those parts of the MobSTr data set that are relevan
 * The AMALTHEA models have been migrated from app4mc-1.0.0 to app4mc-2.0.0 which is not yet (i.e., at time of writing) targeted by the official [CAPRA release](https://projects.eclipse.org/projects/modeling.capra/releases/0.8.2). This breaks the installation instructions for the original data set. 
 * Some parts of the model have been changed in order to fit the application of the paper. This leads to inconsistencies with other artifacts in the original MobSTr data set. 
 
-## Repository Contents
-
-The files contained in this repo are
+The contained files are
 
 * `mobstr-mapped+safety.amxmi`: The modified AMALTHEA model
 * `*.model`: The analysis model for the RTana2sim model checker
