@@ -1,0 +1,182 @@
+// Copyright (C) 2022 by DLR e. V. 
+
+const FAULT_NOT_PRESENT=1;
+const FAULT_PRESENT=2;
+const Normal=1;
+const Recover=2;
+
+ports Localization.lidar_input Path_Planner.environment_state Localization.environment_state Localization.Particle_Filter.pose Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes Object_Detection.Object_Localization.Object_Localization_via_Lidar.object_poses Driver_Warnings.object_detection_warnings Object_Detection.warnings Object_Detection.Object_Localization.warnings Object_Detection.Object_Classification.frame Object_Detection.Object_Localization.Object_Localization_via_Camera.frame Object_Detection.Object_Localization.frame Object_Detection.Image_Grabber_Camera.sd_camera Object_Detection.Lidar_Grabber.sd_lidar Lane_Detection.lane CANBus_Interface.vehicle_commands Localization.Ego_Pose_Fusion.fused_pose Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output Object_Detection.Object_Localization.lidar_input Path_Planner.vehicle_goal_state Localization.Ego_Pose_Fusion.gps_input Localization.gps_input Object_Detection.Lidar_Grabber.occupancy_grid Localization.Particle_Filter.vehicle_status Localization.vehicle_status Localization.Extended_Kalman_Filter.vehicle_status Object_Detection.fused_objects Path_Planner.fused_objects Object_Detection.Object_Localization.fused_objects Object_Detection.object_list Path_Planner.object_classification dummy[0]:=1 Camera.transient_failure[0]:=FAULT_NOT_PRESENT Lidar.permanent_failure[0]:=FAULT_NOT_PRESENT Lidar.transient_failure[0]:=FAULT_NOT_PRESENT Camera.permanent_failure[0]:=FAULT_NOT_PRESENT lg_mode[0]:=Normal cg_mode[0]:=Normal;
+portmap Controller.vehicle_goal_state -> Path_Planner.vehicle_goal_state;
+portmap Localization.Extended_Kalman_Filter.fused_pose -> Localization.Ego_Pose_Fusion.fused_pose;
+portmap Controller.vehicle_commands -> CANBus_Interface.vehicle_commands;
+portmap Path_Planner.lane -> Lane_Detection.lane;
+portmap Object_Detection.Object_Localization.Sensor_Fusion.object_poses -> Object_Detection.Object_Localization.Object_Localization_via_Lidar.object_poses;
+portmap Object_Detection.Object_Localization.Sensor_Fusion.bounding_boxes -> Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes;
+portmap Localization.Ego_Pose_Fusion.pose -> Localization.Particle_Filter.pose;
+portmap Localization.Particle_Filter.lidar_input -> Localization.lidar_input;
+signal Localization.Extended_Kalman_Filter.environment_state -> Path_Planner.environment_state Localization.environment_state;
+signal Object_Detection.Object_Localization.Sensor_Fusion.sensor_warnings -> Driver_Warnings.object_detection_warnings Object_Detection.warnings Object_Detection.Object_Localization.warnings;
+signal Object_Detection.Image_Grabber_Camera.frame -> Object_Detection.Object_Classification.frame Object_Detection.Object_Localization.Object_Localization_via_Camera.frame Object_Detection.Object_Localization.frame;
+signal Object_Detection.sd -> Object_Detection.Image_Grabber_Camera.sd_camera Object_Detection.Lidar_Grabber.sd_lidar;
+signal Object_Detection.Lidar_Grabber.lidar_output -> Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output Object_Detection.Object_Localization.lidar_input;
+signal GPS_Grabber.gps_output -> Localization.Ego_Pose_Fusion.gps_input Localization.gps_input;
+signal CANBus_Interface.vehicle_status -> Localization.Particle_Filter.vehicle_status Localization.vehicle_status Localization.Extended_Kalman_Filter.vehicle_status;
+signal Object_Detection.Object_Localization.Sensor_Fusion.fused_objects -> Object_Detection.fused_objects Path_Planner.fused_objects Object_Detection.Object_Localization.fused_objects;
+signal Object_Detection.Object_Classification.object_list -> Object_Detection.object_list Path_Planner.object_classification;
+//Reaction(bounding_boxes, fused_objects) within [5,25]ms
+comp C6__G___1:
+  trigger in (I,0) on Object_Detection.Object_Localization.Sensor_Fusion.bounding_boxes:
+    case Object_Detection.Object_Localization.Sensor_Fusion.bounding_boxes?*:
+	  after [5, 25] write Object_Detection.Object_Localization.Sensor_Fusion.fused_objects!1;
+      goto (I,0);
+endcomp;
+
+//Reaction(object_poses, fused_objects) within [5,25]ms
+comp C6__G:
+  trigger in (I,0) on Object_Detection.Object_Localization.Sensor_Fusion.object_poses:
+    case Object_Detection.Object_Localization.Sensor_Fusion.object_poses?*:      
+	  after [5, 25] write Object_Detection.Object_Localization.Sensor_Fusion.fused_objects!1;
+      goto (I,0);
+endcomp;
+
+//Reaction(frame, bounding_boxes) within [20,55]ms
+comp C5__G:
+  trigger in (I,0) on Object_Detection.Object_Localization.Object_Localization_via_Camera.frame:
+    case Object_Detection.Object_Localization.Object_Localization_via_Camera.frame?*:      
+	  after [20, 55] write Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes!1;
+      goto (I,0);
+endcomp;
+
+//Reaction(lidar_output, object_poses) within [120,795]ms
+comp C4__G:
+  trigger in (I,0) on Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output:
+    case Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output?*:      
+	  after [120, 795] write Object_Detection.Object_Localization.Object_Localization_via_Lidar.object_poses!1;
+      goto (I,0);
+endcomp;
+
+//Reaction(sd_camera.OK, (set(mode, Normal), frame)) within [10,60] ms 
+//Reaction(sd_camera.NOT_OK, set(mode, Recover)) within [10,60] ms 
+comp C3__G:
+  trigger in (I,0) on Object_Detection.Image_Grabber_Camera.sd_camera:
+    case Object_Detection.Image_Grabber_Camera.sd_camera?*,Camera.transient_failure== FAULT_NOT_PRESENT , Camera.permanent_failure== FAULT_NOT_PRESENT:      
+	  after [10, 60] write cg_mode:=Normal, Object_Detection.Image_Grabber_Camera.frame!1;
+      goto (I,0);
+    case Object_Detection.Image_Grabber_Camera.sd_camera?*:      
+	  after [10, 60] write cg_mode:=Recover;
+      goto (I,0);
+endcomp;
+
+//Reaction(sd_lidar.OK, (set(mode, Normal), lidar_output)) within [5,60] ms
+//Reaction(sd_lidar.OK, set(mode, Recover)) within [5,60] ms
+comp C2__G:
+  trigger in (I,0) on Object_Detection.Lidar_Grabber.sd_lidar:
+    case Object_Detection.Lidar_Grabber.sd_lidar?*,Lidar.permanent_failure== FAULT_NOT_PRESENT , Lidar.transient_failure== FAULT_NOT_PRESENT:    
+	  after [5, 60] write lg_mode:=Normal, Object_Detection.Lidar_Grabber.lidar_output!1;
+      goto (I,0);
+    case Object_Detection.Lidar_Grabber.sd_lidar?*:      
+	  after [5, 60] write lg_mode:=Recover;
+      goto (I,0);
+endcomp;
+
+
+//at most one of {Camera, Lidar} fails permanently
+comp C1__A3:
+  trigger in (I,0) on Camera.permanent_failure:
+    case Camera.permanent_failure == *:
+      after [1,100] write Camera.permanent_failure := FAULT_PRESENT;
+      goto (B,0);
+  trigger in (I,0) on Camera.permanent_failure:
+    case Camera.permanent_failure == *:
+      after [100,100] write Camera.permanent_failure := FAULT_NOT_PRESENT;
+      goto (I,0);
+  trigger in (I,0) on Lidar.permanent_failure:
+    case Lidar.permanent_failure == *:
+      after [1,100] write Lidar.permanent_failure := FAULT_PRESENT;
+      goto (B,0);
+endcomp;
+
+//Camera fails at most once every 132ms with latency 66 ms
+comp C1__A2:
+  trigger in (I,0) on Camera.transient_failure:
+    case Camera.transient_failure == *:
+      after [66, 66] write Camera.transient_failure := FAULT_NOT_PRESENT;
+      goto (I,0);
+  trigger in (I,0) on Camera.transient_failure:
+    case Camera.transient_failure == *:
+      after [132, 132] write Camera.transient_failure := FAULT_PRESENT;
+      after [66, 66] write Camera.transient_failure := FAULT_NOT_PRESENT;
+      goto (I,0);
+endcomp;
+
+//Lidar fails at most once every 132ms with latency 66 ms
+comp C1__A1:
+  trigger in (I,0) on Lidar.transient_failure:
+    case Lidar.transient_failure == *:
+      after [66,66] write Lidar.transient_failure := FAULT_NOT_PRESENT;
+      goto (I,0);
+  trigger in (I,0) on Lidar.transient_failure:
+    case Lidar.transient_failure == *:
+      after [132, 132] write Lidar.transient_failure := FAULT_PRESENT;
+      after [66, 66] write Lidar.transient_failure := FAULT_NOT_PRESENT;
+      goto (I,0);
+endcomp;
+
+//sd occurs every 66ms
+//source C1__A0 [66, 66] Object_Detection.sd!1;
+// use equivalent component here, avoiding race condition (open bug)
+comp C1__A0:
+  trigger in (I,0) on dummy: 
+    case dummy==*:
+	  after [66, 66] write Object_Detection.sd!1;
+	  goto (I,0);
+endcomp;
+
+
+// Reaction(sd.OK, fused_objects) within [100, 1006]ms in mode Normal
+obs C1__G1:
+  mode 0:
+  -- Object_Detection.sd ((lg_mode.front==Normal || cg_mode.front==Normal) && 
+      (((Camera.transient_failure.front != FAULT_PRESENT) && (Camera.permanent_failure.front != FAULT_PRESENT)) ||
+	  ((Lidar.permanent_failure.front != FAULT_PRESENT) && (Lidar.transient_failure.front != FAULT_PRESENT)))) -> 1;
+  mode 1 [1006]:
+  -- Object_Detection.Object_Localization.Sensor_Fusion.fused_objects [100, 1006] -> 0;
+endobs;
+
+// Reaction(sd.NOT_OK, set(mode, recover)) within [5, 66]ms in mode Normal
+obs C1__G2:
+  mode 0:
+  -- Object_Detection.sd ((lg_mode.front==Normal || cg_mode.front==Normal) && 
+      (((Camera.transient_failure.front == FAULT_PRESENT) || (Camera.permanent_failure.front == FAULT_PRESENT)) &&
+	  ((Lidar.permanent_failure.front == FAULT_PRESENT) || (Lidar.transient_failure.front == FAULT_PRESENT)))) -> 1;
+  mode 1 [66]:
+  -- lg_mode:=Recover (cg_mode.front==Recover) [5, 66] -> 0;
+  -- cg_mode:=Recover (lg_mode.front==Recover) [5, 66] -> 0;
+  
+endobs;
+
+// Reaction(sd.OK, fused_objects) within [100, 940]ms in mode Recover
+obs C1__G3:
+  mode 0:
+  -- Object_Detection.sd (lg_mode.front==Recover && cg_mode.front==Recover && 
+      (((Camera.transient_failure.front != FAULT_PRESENT) && (Camera.permanent_failure.front != FAULT_PRESENT)) ||
+	  ((Lidar.permanent_failure.front != FAULT_PRESENT) && (Lidar.transient_failure.front != FAULT_PRESENT)))) -> 1;
+  mode 1 [940]:
+  -- Object_Detection.Object_Localization.Sensor_Fusion.fused_objects [100, 940] -> 0;
+endobs;
+
+//sd_lidar occurs every 66ms
+obs C2__A2b:
+  mode 0 [66]:
+  -- Object_Detection.sd [66, 66] -> 0;
+endobs;
+
+//sd_camera occurs every 66ms
+obs C3__A3b:
+  mode 0 [66]:
+  -- Object_Detection.sd [66, 66] -> 0;
+endobs;
+property C1__G1.mode != BAD;
+property C1__G2.mode != BAD;
+property C2__A2b.mode != BAD;
+property C3__A3b.mode != BAD;

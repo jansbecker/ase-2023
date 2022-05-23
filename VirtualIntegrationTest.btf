@@ -1,0 +1,217 @@
+#version 2.1.5
+#creator RTAna2sim
+#creationDate 2022-05-20T08:14:06Z
+#inputFile C:/Users/beck_js/Documents/PANORAMA/git-repos/mobstr-dataset/org.panorama-research.mobstr.analysis/rtana2sim/VirtualIntegrationTest.model
+#timescale ns
+#typeTable
+#-0 T
+#-1 C
+#-2 STI
+#-3 SIG
+#entityTable
+#-0 C6__G___1
+#-1 C6__G
+#-2 C4__G
+#-3 C5__G
+#-4 C3__G
+#-5 C1__A2
+#-6 C1__A1
+#-7 C1__A0
+#-8 C1__A3
+#-9 C2__G
+#-10 Core0_compSched
+#-11 C6__G___1_Trigger0
+#-12 C6__G_Trigger0
+#-13 C5__G_Trigger0
+#-14 C4__G_Trigger0
+#-15 C3__G_Trigger0
+#-16 C2__G_Trigger0
+#-17 C1__A3_Trigger0
+#-18 C1__A3_Trigger1
+#-19 C1__A3_Trigger2
+#-20 C1__A2_Trigger0
+#-21 C1__A2_Trigger1
+#-22 C1__A1_Trigger0
+#-23 C1__A1_Trigger1
+#-24 C1__A0_Trigger0
+#-25 Localization.lidar_input
+#-26 Path_Planner.environment_state
+#-27 Localization.environment_state
+#-28 Localization.Particle_Filter.pose
+#-29 Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes
+#-30 Object_Detection.Object_Localization.Object_Localization_via_Lidar.object_poses
+#-31 Driver_Warnings.object_detection_warnings
+#-32 Object_Detection.warnings
+#-33 Object_Detection.Object_Localization.warnings
+#-34 Object_Detection.Object_Classification.frame
+#-35 Object_Detection.Object_Localization.Object_Localization_via_Camera.frame
+#-36 Object_Detection.Object_Localization.frame
+#-37 Object_Detection.Image_Grabber_Camera.sd_camera
+#-38 Object_Detection.Lidar_Grabber.sd_lidar
+#-39 Lane_Detection.lane
+#-40 CANBus_Interface.vehicle_commands
+#-41 Localization.Ego_Pose_Fusion.fused_pose
+#-42 Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output
+#-43 Object_Detection.Object_Localization.lidar_input
+#-44 Path_Planner.vehicle_goal_state
+#-45 Localization.Ego_Pose_Fusion.gps_input
+#-46 Localization.gps_input
+#-47 Object_Detection.Lidar_Grabber.occupancy_grid
+#-48 Localization.Particle_Filter.vehicle_status
+#-49 Localization.vehicle_status
+#-50 Localization.Extended_Kalman_Filter.vehicle_status
+#-51 Object_Detection.fused_objects
+#-52 Path_Planner.fused_objects
+#-53 Object_Detection.Object_Localization.fused_objects
+#-54 Object_Detection.object_list
+#-55 Path_Planner.object_classification
+#-56 dummy
+#-57 Camera.transient_failure
+#-58 Lidar.permanent_failure
+#-59 Lidar.transient_failure
+#-60 Camera.permanent_failure
+#-61 lg_mode
+#-62 cg_mode
+#-63 Localization.Extended_Kalman_Filter.environment_state
+#-64 Object_Detection.Object_Localization.Sensor_Fusion.sensor_warnings
+#-65 Object_Detection.Image_Grabber_Camera.frame
+#-66 Object_Detection.sd
+#-67 Object_Detection.Lidar_Grabber.lidar_output
+#-68 GPS_Grabber.gps_output
+#-69 CANBus_Interface.vehicle_status
+#-70 Object_Detection.Object_Localization.Sensor_Fusion.fused_objects
+#-71 Object_Detection.Object_Classification.object_list
+#entityTypeTable
+#-T C6__G___1
+#-T C6__G
+#-T C4__G
+#-T C5__G
+#-T C3__G
+#-T C1__A2
+#-T C1__A1
+#-T C1__A0
+#-T C1__A3
+#-T C2__G
+#-C Core0_compSched
+#-STI C6__G___1_Trigger0
+#-STI C6__G_Trigger0
+#-STI C5__G_Trigger0
+#-STI C4__G_Trigger0
+#-STI C3__G_Trigger0
+#-STI C2__G_Trigger0
+#-STI C1__A3_Trigger0
+#-STI C1__A3_Trigger1
+#-STI C1__A3_Trigger2
+#-STI C1__A2_Trigger0
+#-STI C1__A2_Trigger1
+#-STI C1__A1_Trigger0
+#-STI C1__A1_Trigger1
+#-STI C1__A0_Trigger0
+#-SIG Localization.lidar_input
+#-SIG Path_Planner.environment_state
+#-SIG Localization.environment_state
+#-SIG Localization.Particle_Filter.pose
+#-SIG Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes
+#-SIG Object_Detection.Object_Localization.Object_Localization_via_Lidar.object_poses
+#-SIG Driver_Warnings.object_detection_warnings
+#-SIG Object_Detection.warnings
+#-SIG Object_Detection.Object_Localization.warnings
+#-SIG Object_Detection.Object_Classification.frame
+#-SIG Object_Detection.Object_Localization.Object_Localization_via_Camera.frame
+#-SIG Object_Detection.Object_Localization.frame
+#-SIG Object_Detection.Image_Grabber_Camera.sd_camera
+#-SIG Object_Detection.Lidar_Grabber.sd_lidar
+#-SIG Lane_Detection.lane
+#-SIG CANBus_Interface.vehicle_commands
+#-SIG Localization.Ego_Pose_Fusion.fused_pose
+#-SIG Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output
+#-SIG Object_Detection.Object_Localization.lidar_input
+#-SIG Path_Planner.vehicle_goal_state
+#-SIG Localization.Ego_Pose_Fusion.gps_input
+#-SIG Localization.gps_input
+#-SIG Object_Detection.Lidar_Grabber.occupancy_grid
+#-SIG Localization.Particle_Filter.vehicle_status
+#-SIG Localization.vehicle_status
+#-SIG Localization.Extended_Kalman_Filter.vehicle_status
+#-SIG Object_Detection.fused_objects
+#-SIG Path_Planner.fused_objects
+#-SIG Object_Detection.Object_Localization.fused_objects
+#-SIG Object_Detection.object_list
+#-SIG Path_Planner.object_classification
+#-SIG dummy
+#-SIG Camera.transient_failure
+#-SIG Lidar.permanent_failure
+#-SIG Lidar.transient_failure
+#-SIG Camera.permanent_failure
+#-SIG lg_mode
+#-SIG cg_mode
+#-SIG Localization.Extended_Kalman_Filter.environment_state
+#-SIG Object_Detection.Object_Localization.Sensor_Fusion.sensor_warnings
+#-SIG Object_Detection.Image_Grabber_Camera.frame
+#-SIG Object_Detection.sd
+#-SIG Object_Detection.Lidar_Grabber.lidar_output
+#-SIG GPS_Grabber.gps_output
+#-SIG CANBus_Interface.vehicle_status
+#-SIG Object_Detection.Object_Localization.Sensor_Fusion.fused_objects
+#-SIG Object_Detection.Object_Classification.object_list
+0,C1__A2_Trigger1,0,T,C1__A2,0,activate
+0,Core0_compSched,0,T,C1__A2,0,start
+0,C1__A2,0,SIG,Camera.transient_failure,0,read,15
+0,C1__A1_Trigger1,0,T,C1__A1,0,activate
+0,Core0_compSched,0,T,C1__A1,0,start
+0,C1__A1,0,SIG,Lidar.transient_failure,0,read,15
+0,C1__A0_Trigger0,0,T,C1__A0,0,activate
+0,Core0_compSched,0,T,C1__A0,0,start
+0,C1__A0,0,SIG,dummy,0,read,15
+0,C1__A3_Trigger2,0,T,C1__A3,0,activate
+0,Core0_compSched,0,T,C1__A3,0,start
+0,C1__A3,0,SIG,Lidar.permanent_failure,0,read,15
+6600,C1__A0,0,SIG,Object_Detection.sd,0,write,1
+6600,Core0_compSched,0,T,C1__A0,0,terminate
+6600,C3__G_Trigger0,0,T,C3__G,0,activate
+6600,Core0_compSched,0,T,C3__G,0,start
+6600,C3__G,0,SIG,Object_Detection.Image_Grabber_Camera.sd_camera,0,read,15
+6600,C3__G,0,SIG,Camera.transient_failure,0,read,1
+6600,C3__G,0,SIG,Camera.permanent_failure,0,read,1
+6600,C1__A0_Trigger0,1,T,C1__A0,1,activate
+6600,Core0_compSched,0,T,C1__A0,1,start
+6600,C1__A0,1,SIG,dummy,0,read,15
+6600,C2__G_Trigger0,0,T,C2__G,0,activate
+6600,Core0_compSched,0,T,C2__G,0,start
+6600,C2__G,0,SIG,Object_Detection.Lidar_Grabber.sd_lidar,0,read,15
+6600,C2__G,0,SIG,Lidar.permanent_failure,0,read,1
+6600,C2__G,0,SIG,Lidar.transient_failure,0,read,1
+10000,C1__A3,0,SIG,Lidar.permanent_failure,0,write,2
+10000,Core0_compSched,0,T,C1__A3,0,poll
+10000,C2__G,0,SIG,lg_mode,0,write,1
+10000,C2__G,0,SIG,Object_Detection.Lidar_Grabber.lidar_output,0,write,1
+10000,Core0_compSched,0,T,C2__G,0,terminate
+10000,C4__G_Trigger0,0,T,C4__G,0,activate
+10000,Core0_compSched,0,T,C4__G,0,start
+10000,C4__G,0,SIG,Object_Detection.Object_Localization.Object_Localization_via_Lidar.lidar_output,0,read,15
+10000,C3__G,0,SIG,cg_mode,0,write,1
+10000,C3__G,0,SIG,Object_Detection.Image_Grabber_Camera.frame,0,write,1
+10000,Core0_compSched,0,T,C3__G,0,terminate
+10000,C5__G_Trigger0,0,T,C5__G,0,activate
+10000,Core0_compSched,0,T,C5__G,0,start
+10000,C5__G,0,SIG,Object_Detection.Object_Localization.Object_Localization_via_Camera.frame,0,read,15
+13200,C1__A2,0,SIG,Camera.transient_failure,0,write,2
+13200,C1__A1,0,SIG,Lidar.transient_failure,0,write,2
+13200,C1__A0,1,SIG,Object_Detection.sd,0,write,1
+13200,Core0_compSched,0,T,C1__A0,1,terminate
+13200,C3__G_Trigger0,1,T,C3__G,1,activate
+13200,Core0_compSched,0,T,C3__G,1,start
+13200,C3__G,1,SIG,Object_Detection.Image_Grabber_Camera.sd_camera,0,read,15
+13200,C1__A0_Trigger0,2,T,C1__A0,2,activate
+13200,Core0_compSched,0,T,C1__A0,2,start
+13200,C1__A0,2,SIG,dummy,0,read,15
+13200,C2__G_Trigger0,1,T,C2__G,1,activate
+13200,Core0_compSched,0,T,C2__G,1,start
+13200,C2__G,1,SIG,Object_Detection.Lidar_Grabber.sd_lidar,0,read,15
+14200,C3__G,1,SIG,cg_mode,0,write,2
+14200,Core0_compSched,0,T,C3__G,1,terminate
+15500,C5__G,0,SIG,Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes,0,write,1
+15500,Core0_compSched,0,T,C5__G,0,terminate
+15500,C6__G___1_Trigger0,0,T,C6__G___1,0,activate
+15500,Core0_compSched,0,T,C6__G___1,0,start
+15500,C6__G___1,0,SIG,Object_Detection.Object_Localization.Object_Localization_via_Camera.bounding_boxes,0,read,15

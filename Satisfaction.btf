@@ -1,0 +1,2207 @@
+#version 2.1.5
+#creator RTAna2sim
+#creationDate 2022-05-20T08:15:16Z
+#inputFile C:/Users/beck_js/Documents/PANORAMA/git-repos/mobstr-dataset/org.panorama-research.mobstr.analysis/rtana2sim/Satisfaction_CameraGrabber.model
+#timescale ns
+#typeTable
+#-0 T
+#-1 C
+#-2 STI
+#-3 SIG
+#entityTable
+#-0 periodic_100ms
+#-1 periodic_33ms
+#-2 periodic_5ms
+#-3 periodic_15ms
+#-4 periodic_200ms
+#-5 periodic_10ms
+#-6 periodic_400ms
+#-7 periodic_66ms
+#-8 OS_Overhead
+#-9 PRE_Localization_gpu_POST
+#-10 Lane_detection
+#-11 PRE_Lane_detection_gpu_POST
+#-12 PRE_SFM_gpu_POST
+#-13 Lidar_Grabber
+#-14 PRE_Detection_gpu_POST
+#-15 CANbus_polling
+#-16 EKF
+#-17 Planner
+#-18 C3__A2
+#-19 DASM
+#-20 Localization
+#-21 SFM
+#-22 C3__A3b
+#-23 Detection
+#-24 Core0_compSched
+#-25 Core1_Core5
+#-26 Core2_Core4
+#-27 Core3_Core2
+#-28 Core4_Core0
+#-29 Core5_Core1
+#-30 Core6_Core3
+#-31 Core7_GP10B
+#-32 periodic_100ms_Trigger0
+#-33 periodic_33ms_Trigger0
+#-34 periodic_5ms_Trigger0
+#-35 periodic_10ms_Trigger0
+#-36 periodic_15ms_Trigger0
+#-37 periodic_400ms_Trigger0
+#-38 periodic_66ms_Trigger0
+#-39 periodic_200ms_Trigger0
+#-40 C3__A2_Trigger0
+#-41 C3__A2_Trigger1
+#-42 C3__A3b_Trigger0
+#-43 DASM_Trigger0
+#-44 OS_Overhead_Trigger0
+#-45 Lidar_Grabber_Trigger0
+#-46 Lidar_Grabber_Trigger1
+#-47 PRE_Detection_gpu_POST_Trigger0
+#-48 PRE_Detection_gpu_POST_Trigger1
+#-49 CANbus_polling_Trigger0
+#-50 EKF_Trigger0
+#-51 Planner_Trigger0
+#-52 PRE_SFM_gpu_POST_Trigger0
+#-53 PRE_SFM_gpu_POST_Trigger1
+#-54 PRE_Lane_detection_gpu_POST_Trigger0
+#-55 PRE_Lane_detection_gpu_POST_Trigger1
+#-56 Lane_detection_Trigger0
+#-57 PRE_Localization_gpu_POST_Trigger0
+#-58 PRE_Localization_gpu_POST_Trigger1
+#-59 Localization_Trigger0
+#-60 SFM_Trigger0
+#-61 Detection_Trigger0
+#-62 dummy
+#-63 OS_Overhead_trigg
+#-64 OS_Overhead_fin
+#-65 Lidar_Grabber_trigg
+#-66 Lidar_Grabber_fin
+#-67 Lidar.transient_failure
+#-68 Lidar.permanent_failure
+#-69 Camera.permanent_failure
+#-70 Camera.transient_failure
+#-71 sd_lidar
+#-72 lg_mode
+#-73 lidar_output
+#-74 lidar_input
+#-75 sd_camera
+#-76 cg_mode
+#-77 Image_host
+#-78 frame
+#-79 Image_lane_lines_host
+#-80 DASM_trigg
+#-81 DASM_fin
+#-82 speed_objective
+#-83 steer_objective
+#-84 CANbus_polling_trigg
+#-85 CANbus_polling_fin
+#-86 Vehicle_status_host
+#-87 EKF_trigg
+#-88 EKF_fin
+#-89 object_poses
+#-90 y_car_host
+#-91 yaw_car_host
+#-92 vel_car
+#-93 yaw_rate
+#-94 Planner_trigg
+#-95 Planner_fin
+#-96 bounding_boxes
+#-97 fused_objects
+#-98 Lane_boundaries_host
+#-99 Bounding_box_host
+#-100 PRE_SFM_gpu_POST_trigg
+#-101 PRE_SFM_gpu_POST_fin
+#-102 SFM_PRE_SFM_gpu_POST
+#-103 PRE_Localization_gpu_POST_trigg
+#-104 PRE_Localization_gpu_POST_fin
+#-105 Localization_GPU_PRE_Localization_gpu_POST
+#-106 PRE_Lane_detection_gpu_POST_trigg
+#-107 PRE_Lane_detection_gpu_POST_fin
+#-108 Lane_detect_GPU_PRE_Lane_detection_gpu_POST
+#-109 PRE_Detection_gpu_POST_trigg
+#-110 PRE_Detection_gpu_POST_fin
+#-111 Detect_PRE_Detection_gpu_POST
+#-112 SFM_trigg
+#-113 SFM_fin
+#-114 IMU_data_host
+#-115 Image_SFM_device
+#-116 IMU_data_device
+#-117 Matrix_SFM_device
+#-118 Localization_trigg
+#-119 Localization_fin
+#-120 Cloud_map_device
+#-121 Vehicle_status_device
+#-122 x_car_device
+#-123 y_car_device
+#-124 yaw_car_device
+#-125 Lane_detection_trigg
+#-126 Lane_detection_fin
+#-127 Image_lane_lines_device
+#-128 Lane_boundaries_device
+#-129 Detection_trigg
+#-130 Detection_fin
+#-131 Image_device
+#-132 Bounding_box_device
+#-133 periodic_100ms_signal
+#-134 periodic_33ms_signal
+#-135 periodic_5ms_signal
+#-136 periodic_10ms_signal
+#-137 periodic_15ms_signal
+#-138 SFM_stim_signal
+#-139 periodic_400ms_signal
+#-140 Localization_stim_signal
+#-141 periodic_66ms_signal
+#-142 Lane_detection_stim_signal
+#-143 periodic_200ms_signal
+#-144 detection_stim_signal
+#entityTypeTable
+#-T periodic_100ms
+#-T periodic_33ms
+#-T periodic_5ms
+#-T periodic_15ms
+#-T periodic_200ms
+#-T periodic_10ms
+#-T periodic_400ms
+#-T periodic_66ms
+#-T OS_Overhead
+#-T PRE_Localization_gpu_POST
+#-T Lane_detection
+#-T PRE_Lane_detection_gpu_POST
+#-T PRE_SFM_gpu_POST
+#-T Lidar_Grabber
+#-T PRE_Detection_gpu_POST
+#-T CANbus_polling
+#-T EKF
+#-T Planner
+#-T C3__A2
+#-T DASM
+#-T Localization
+#-T SFM
+#-T C3__A3b
+#-T Detection
+#-C Core0_compSched
+#-C Core1_Core5
+#-C Core2_Core4
+#-C Core3_Core2
+#-C Core4_Core0
+#-C Core5_Core1
+#-C Core6_Core3
+#-C Core7_GP10B
+#-STI periodic_100ms_Trigger0
+#-STI periodic_33ms_Trigger0
+#-STI periodic_5ms_Trigger0
+#-STI periodic_10ms_Trigger0
+#-STI periodic_15ms_Trigger0
+#-STI periodic_400ms_Trigger0
+#-STI periodic_66ms_Trigger0
+#-STI periodic_200ms_Trigger0
+#-STI C3__A2_Trigger0
+#-STI C3__A2_Trigger1
+#-STI C3__A3b_Trigger0
+#-STI DASM_Trigger0
+#-STI OS_Overhead_Trigger0
+#-STI Lidar_Grabber_Trigger0
+#-STI Lidar_Grabber_Trigger1
+#-STI PRE_Detection_gpu_POST_Trigger0
+#-STI PRE_Detection_gpu_POST_Trigger1
+#-STI CANbus_polling_Trigger0
+#-STI EKF_Trigger0
+#-STI Planner_Trigger0
+#-STI PRE_SFM_gpu_POST_Trigger0
+#-STI PRE_SFM_gpu_POST_Trigger1
+#-STI PRE_Lane_detection_gpu_POST_Trigger0
+#-STI PRE_Lane_detection_gpu_POST_Trigger1
+#-STI Lane_detection_Trigger0
+#-STI PRE_Localization_gpu_POST_Trigger0
+#-STI PRE_Localization_gpu_POST_Trigger1
+#-STI Localization_Trigger0
+#-STI SFM_Trigger0
+#-STI Detection_Trigger0
+#-SIG dummy
+#-SIG OS_Overhead_trigg
+#-SIG OS_Overhead_fin
+#-SIG Lidar_Grabber_trigg
+#-SIG Lidar_Grabber_fin
+#-SIG Lidar.transient_failure
+#-SIG Lidar.permanent_failure
+#-SIG Camera.permanent_failure
+#-SIG Camera.transient_failure
+#-SIG sd_lidar
+#-SIG lg_mode
+#-SIG lidar_output
+#-SIG lidar_input
+#-SIG sd_camera
+#-SIG cg_mode
+#-SIG Image_host
+#-SIG frame
+#-SIG Image_lane_lines_host
+#-SIG DASM_trigg
+#-SIG DASM_fin
+#-SIG speed_objective
+#-SIG steer_objective
+#-SIG CANbus_polling_trigg
+#-SIG CANbus_polling_fin
+#-SIG Vehicle_status_host
+#-SIG EKF_trigg
+#-SIG EKF_fin
+#-SIG object_poses
+#-SIG y_car_host
+#-SIG yaw_car_host
+#-SIG vel_car
+#-SIG yaw_rate
+#-SIG Planner_trigg
+#-SIG Planner_fin
+#-SIG bounding_boxes
+#-SIG fused_objects
+#-SIG Lane_boundaries_host
+#-SIG Bounding_box_host
+#-SIG PRE_SFM_gpu_POST_trigg
+#-SIG PRE_SFM_gpu_POST_fin
+#-SIG SFM_PRE_SFM_gpu_POST
+#-SIG PRE_Localization_gpu_POST_trigg
+#-SIG PRE_Localization_gpu_POST_fin
+#-SIG Localization_GPU_PRE_Localization_gpu_POST
+#-SIG PRE_Lane_detection_gpu_POST_trigg
+#-SIG PRE_Lane_detection_gpu_POST_fin
+#-SIG Lane_detect_GPU_PRE_Lane_detection_gpu_POST
+#-SIG PRE_Detection_gpu_POST_trigg
+#-SIG PRE_Detection_gpu_POST_fin
+#-SIG Detect_PRE_Detection_gpu_POST
+#-SIG SFM_trigg
+#-SIG SFM_fin
+#-SIG IMU_data_host
+#-SIG Image_SFM_device
+#-SIG IMU_data_device
+#-SIG Matrix_SFM_device
+#-SIG Localization_trigg
+#-SIG Localization_fin
+#-SIG Cloud_map_device
+#-SIG Vehicle_status_device
+#-SIG x_car_device
+#-SIG y_car_device
+#-SIG yaw_car_device
+#-SIG Lane_detection_trigg
+#-SIG Lane_detection_fin
+#-SIG Image_lane_lines_device
+#-SIG Lane_boundaries_device
+#-SIG Detection_trigg
+#-SIG Detection_fin
+#-SIG Image_device
+#-SIG Bounding_box_device
+#-SIG periodic_100ms_signal
+#-SIG periodic_33ms_signal
+#-SIG periodic_5ms_signal
+#-SIG periodic_10ms_signal
+#-SIG periodic_15ms_signal
+#-SIG SFM_stim_signal
+#-SIG periodic_400ms_signal
+#-SIG Localization_stim_signal
+#-SIG periodic_66ms_signal
+#-SIG Lane_detection_stim_signal
+#-SIG periodic_200ms_signal
+#-SIG detection_stim_signal
+0,periodic_100ms_Trigger0,0,T,periodic_100ms,0,activate
+0,Core0_compSched,0,T,periodic_100ms,0,start
+0,periodic_33ms_Trigger0,0,T,periodic_33ms,0,activate
+0,Core0_compSched,0,T,periodic_33ms,0,start
+0,periodic_5ms_Trigger0,0,T,periodic_5ms,0,activate
+0,Core0_compSched,0,T,periodic_5ms,0,start
+0,periodic_15ms_Trigger0,0,T,periodic_15ms,0,activate
+0,Core0_compSched,0,T,periodic_15ms,0,start
+0,periodic_200ms_Trigger0,0,T,periodic_200ms,0,activate
+0,Core0_compSched,0,T,periodic_200ms,0,start
+0,periodic_10ms_Trigger0,0,T,periodic_10ms,0,activate
+0,Core0_compSched,0,T,periodic_10ms,0,start
+0,periodic_400ms_Trigger0,0,T,periodic_400ms,0,activate
+0,Core0_compSched,0,T,periodic_400ms,0,start
+0,periodic_66ms_Trigger0,0,T,periodic_66ms,0,activate
+0,Core0_compSched,0,T,periodic_66ms,0,start
+0,C3__A2_Trigger1,0,T,C3__A2,0,activate
+0,Core0_compSched,0,T,C3__A2,0,start
+0,C3__A2,0,SIG,Camera.transient_failure,0,read,15
+0,C3__A3b_Trigger0,0,T,C3__A3b,0,activate
+0,Core0_compSched,0,T,C3__A3b,0,start
+0,C3__A3b,0,SIG,dummy,0,read,15
+500,periodic_5ms,0,SIG,periodic_5ms_signal,0,write,1
+500,Core0_compSched,0,T,periodic_5ms,0,terminate
+500,periodic_5ms_Trigger0,1,T,periodic_5ms,1,activate
+500,Core0_compSched,0,T,periodic_5ms,1,start
+500,DASM_Trigger0,0,T,DASM,0,activate
+500,Core1_Core5,0,T,DASM,0,start
+500,DASM,0,SIG,DASM_trigg,0,read,15
+500,DASM,0,SIG,speed_objective,0,read,15
+500,DASM,0,SIG,steer_objective,0,read,15
+600,DASM,0,SIG,speed_objective,0,write,1
+600,DASM,0,SIG,steer_objective,0,write,1
+600,DASM,0,SIG,DASM_fin,0,write,1
+600,Core1_Core5,0,T,DASM,0,terminate
+1000,periodic_5ms,1,SIG,periodic_5ms_signal,0,write,1
+1000,Core0_compSched,0,T,periodic_5ms,1,terminate
+1000,periodic_10ms,0,SIG,periodic_10ms_signal,0,write,1
+1000,Core0_compSched,0,T,periodic_10ms,0,terminate
+1000,periodic_5ms_Trigger0,2,T,periodic_5ms,2,activate
+1000,Core0_compSched,0,T,periodic_5ms,2,start
+1000,periodic_10ms_Trigger0,1,T,periodic_10ms,1,activate
+1000,Core0_compSched,0,T,periodic_10ms,1,start
+1000,CANbus_polling_Trigger0,0,T,CANbus_polling,0,activate
+1000,Core3_Core2,0,T,CANbus_polling,0,start
+1000,CANbus_polling,0,SIG,CANbus_polling_trigg,0,read,15
+1000,DASM_Trigger0,1,T,DASM,1,activate
+1000,Core1_Core5,0,T,DASM,1,start
+1000,DASM,1,SIG,DASM_trigg,0,read,15
+1000,DASM,1,SIG,speed_objective,0,read,15
+1000,DASM,1,SIG,steer_objective,0,read,15
+1100,CANbus_polling,0,SIG,Vehicle_status_host,0,write,1
+1100,CANbus_polling,0,SIG,CANbus_polling_fin,0,write,1
+1100,Core3_Core2,0,T,CANbus_polling,0,terminate
+1100,DASM,1,SIG,speed_objective,0,write,1
+1100,DASM,1,SIG,steer_objective,0,write,1
+1100,DASM,1,SIG,DASM_fin,0,write,1
+1100,Core1_Core5,0,T,DASM,1,terminate
+1500,periodic_5ms,2,SIG,periodic_5ms_signal,0,write,1
+1500,Core0_compSched,0,T,periodic_5ms,2,terminate
+1500,periodic_15ms,0,SIG,periodic_15ms_signal,0,write,1
+1500,Core0_compSched,0,T,periodic_15ms,0,terminate
+1500,periodic_5ms_Trigger0,3,T,periodic_5ms,3,activate
+1500,Core0_compSched,0,T,periodic_5ms,3,start
+1500,periodic_15ms_Trigger0,1,T,periodic_15ms,1,activate
+1500,Core0_compSched,0,T,periodic_15ms,1,start
+1500,EKF_Trigger0,0,T,EKF,0,activate
+1500,Core3_Core2,0,T,EKF,0,start
+1500,EKF,0,SIG,EKF_trigg,0,read,15
+1500,EKF,0,SIG,Vehicle_status_host,0,read,15
+1500,EKF,0,SIG,object_poses,0,read,15
+1500,EKF,0,SIG,yaw_car_host,0,read,15
+1500,EKF,0,SIG,y_car_host,0,read,15
+1500,Planner_Trigger0,0,T,Planner,0,activate
+1500,Core4_Core0,0,T,Planner,0,start
+1500,Planner,0,SIG,Planner_trigg,0,read,15
+1500,Planner,0,SIG,vel_car,0,read,15
+1500,Planner,0,SIG,Lane_boundaries_host,0,read,15
+1500,Planner,0,SIG,Vehicle_status_host,0,read,15
+1500,Planner,0,SIG,Bounding_box_host,0,read,15
+1500,Planner,0,SIG,object_poses,0,read,15
+1500,Planner,0,SIG,lidar_input,0,read,15
+1500,Planner,0,SIG,bounding_boxes,0,read,15
+1500,Planner,0,SIG,yaw_car_host,0,read,15
+1500,Planner,0,SIG,y_car_host,0,read,15
+1500,Planner,0,SIG,fused_objects,0,read,15
+1500,Planner,0,SIG,yaw_rate,0,read,15
+1500,DASM_Trigger0,2,T,DASM,2,activate
+1500,Core1_Core5,0,T,DASM,2,start
+1500,DASM,2,SIG,DASM_trigg,0,read,15
+1500,DASM,2,SIG,speed_objective,0,read,15
+1500,DASM,2,SIG,steer_objective,0,read,15
+1600,DASM,2,SIG,speed_objective,0,write,1
+1600,DASM,2,SIG,steer_objective,0,write,1
+1600,DASM,2,SIG,DASM_fin,0,write,1
+1600,Core1_Core5,0,T,DASM,2,terminate
+1800,EKF,0,SIG,object_poses,0,write,1
+1800,EKF,0,SIG,y_car_host,0,write,1
+1800,EKF,0,SIG,yaw_car_host,0,write,1
+1800,EKF,0,SIG,vel_car,0,write,1
+1800,EKF,0,SIG,yaw_rate,0,write,1
+1800,EKF,0,SIG,EKF_fin,0,write,1
+1800,Core3_Core2,0,T,EKF,0,terminate
+2000,periodic_5ms,3,SIG,periodic_5ms_signal,0,write,1
+2000,Core0_compSched,0,T,periodic_5ms,3,terminate
+2000,periodic_10ms,1,SIG,periodic_10ms_signal,0,write,1
+2000,Core0_compSched,0,T,periodic_10ms,1,terminate
+2000,Planner,0,SIG,fused_objects,0,write,1
+2000,periodic_5ms_Trigger0,4,T,periodic_5ms,4,activate
+2000,Core0_compSched,0,T,periodic_5ms,4,start
+2000,periodic_10ms_Trigger0,2,T,periodic_10ms,2,activate
+2000,Core0_compSched,0,T,periodic_10ms,2,start
+2000,CANbus_polling_Trigger0,1,T,CANbus_polling,1,activate
+2000,Core3_Core2,0,T,CANbus_polling,1,start
+2000,CANbus_polling,1,SIG,CANbus_polling_trigg,0,read,15
+2000,DASM_Trigger0,3,T,DASM,3,activate
+2000,Core1_Core5,0,T,DASM,3,start
+2000,DASM,3,SIG,DASM_trigg,0,read,15
+2000,DASM,3,SIG,speed_objective,0,read,15
+2000,DASM,3,SIG,steer_objective,0,read,15
+2100,CANbus_polling,1,SIG,Vehicle_status_host,0,write,1
+2100,CANbus_polling,1,SIG,CANbus_polling_fin,0,write,1
+2100,Core3_Core2,0,T,CANbus_polling,1,terminate
+2100,DASM,3,SIG,speed_objective,0,write,1
+2100,DASM,3,SIG,steer_objective,0,write,1
+2100,DASM,3,SIG,DASM_fin,0,write,1
+2100,Core1_Core5,0,T,DASM,3,terminate
+2400,Planner,0,SIG,speed_objective,0,write,1
+2400,Planner,0,SIG,steer_objective,0,write,1
+2400,Planner,0,SIG,Planner_fin,0,write,1
+2400,Core4_Core0,0,T,Planner,0,terminate
+2500,periodic_5ms,4,SIG,periodic_5ms_signal,0,write,1
+2500,Core0_compSched,0,T,periodic_5ms,4,terminate
+2500,periodic_5ms_Trigger0,5,T,periodic_5ms,5,activate
+2500,Core0_compSched,0,T,periodic_5ms,5,start
+2500,DASM_Trigger0,4,T,DASM,4,activate
+2500,Core1_Core5,0,T,DASM,4,start
+2500,DASM,4,SIG,DASM_trigg,0,read,15
+2500,DASM,4,SIG,speed_objective,0,read,15
+2500,DASM,4,SIG,steer_objective,0,read,15
+2600,DASM,4,SIG,speed_objective,0,write,1
+2600,DASM,4,SIG,steer_objective,0,write,1
+2600,DASM,4,SIG,DASM_fin,0,write,1
+2600,Core1_Core5,0,T,DASM,4,terminate
+3000,periodic_5ms,5,SIG,periodic_5ms_signal,0,write,1
+3000,Core0_compSched,0,T,periodic_5ms,5,terminate
+3000,periodic_15ms,1,SIG,periodic_15ms_signal,0,write,1
+3000,Core0_compSched,0,T,periodic_15ms,1,terminate
+3000,periodic_10ms,2,SIG,periodic_10ms_signal,0,write,1
+3000,Core0_compSched,0,T,periodic_10ms,2,terminate
+3000,periodic_5ms_Trigger0,6,T,periodic_5ms,6,activate
+3000,Core0_compSched,0,T,periodic_5ms,6,start
+3000,periodic_15ms_Trigger0,2,T,periodic_15ms,2,activate
+3000,Core0_compSched,0,T,periodic_15ms,2,start
+3000,periodic_10ms_Trigger0,3,T,periodic_10ms,3,activate
+3000,Core0_compSched,0,T,periodic_10ms,3,start
+3000,CANbus_polling_Trigger0,2,T,CANbus_polling,2,activate
+3000,Core3_Core2,0,T,CANbus_polling,2,start
+3000,CANbus_polling,2,SIG,CANbus_polling_trigg,0,read,15
+3000,EKF_Trigger0,1,T,EKF,1,activate
+3000,Planner_Trigger0,1,T,Planner,1,activate
+3000,Core4_Core0,0,T,Planner,1,start
+3000,Planner,1,SIG,Planner_trigg,0,read,15
+3000,Planner,1,SIG,vel_car,0,read,15
+3000,Planner,1,SIG,Lane_boundaries_host,0,read,15
+3000,Planner,1,SIG,Vehicle_status_host,0,read,15
+3000,Planner,1,SIG,Bounding_box_host,0,read,15
+3000,Planner,1,SIG,object_poses,0,read,15
+3000,Planner,1,SIG,lidar_input,0,read,15
+3000,Planner,1,SIG,bounding_boxes,0,read,15
+3000,Planner,1,SIG,yaw_car_host,0,read,15
+3000,Planner,1,SIG,y_car_host,0,read,15
+3000,Planner,1,SIG,fused_objects,0,read,15
+3000,Planner,1,SIG,yaw_rate,0,read,15
+3000,DASM_Trigger0,5,T,DASM,5,activate
+3000,Core1_Core5,0,T,DASM,5,start
+3000,DASM,5,SIG,DASM_trigg,0,read,15
+3000,DASM,5,SIG,speed_objective,0,read,15
+3000,DASM,5,SIG,steer_objective,0,read,15
+3100,CANbus_polling,2,SIG,Vehicle_status_host,0,write,1
+3100,CANbus_polling,2,SIG,CANbus_polling_fin,0,write,1
+3100,Core3_Core2,0,T,CANbus_polling,2,terminate
+3100,DASM,5,SIG,speed_objective,0,write,1
+3100,DASM,5,SIG,steer_objective,0,write,1
+3100,DASM,5,SIG,DASM_fin,0,write,1
+3100,Core1_Core5,0,T,DASM,5,terminate
+3100,Core3_Core2,0,T,EKF,1,start
+3100,EKF,1,SIG,EKF_trigg,0,read,15
+3100,EKF,1,SIG,Vehicle_status_host,0,read,15
+3100,EKF,1,SIG,object_poses,0,read,15
+3100,EKF,1,SIG,yaw_car_host,0,read,15
+3100,EKF,1,SIG,y_car_host,0,read,15
+3300,periodic_33ms,0,SIG,periodic_33ms_signal,0,write,1
+3300,Core0_compSched,0,T,periodic_33ms,0,terminate
+3300,periodic_33ms_Trigger0,1,T,periodic_33ms,1,activate
+3300,Core0_compSched,0,T,periodic_33ms,1,start
+3300,PRE_SFM_gpu_POST_Trigger0,0,T,PRE_SFM_gpu_POST,0,activate
+3300,Core5_Core1,0,T,PRE_SFM_gpu_POST,0,start
+3300,PRE_SFM_gpu_POST,0,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+3300,PRE_SFM_gpu_POST,0,SIG,frame,0,read,15
+3300,Lidar_Grabber_Trigger0,0,T,Lidar_Grabber,0,activate
+3300,Core2_Core4,0,T,Lidar_Grabber,0,start
+3300,Lidar_Grabber,0,SIG,Camera.transient_failure,0,read,1
+3300,Lidar_Grabber,0,SIG,Camera.permanent_failure,0,read,1
+3300,Lidar_Grabber,0,SIG,Lidar.permanent_failure,0,read,1
+3300,Lidar_Grabber,0,SIG,Lidar_Grabber_trigg,0,read,15
+3300,Lidar_Grabber,0,SIG,Lidar.transient_failure,0,read,1
+3300,Lidar_Grabber,0,SIG,sd_lidar,0,read,1
+3300,Lidar_Grabber,0,SIG,sd_camera,0,read,1
+3400,EKF,1,SIG,object_poses,0,write,1
+3400,EKF,1,SIG,y_car_host,0,write,1
+3400,EKF,1,SIG,yaw_car_host,0,write,1
+3400,EKF,1,SIG,vel_car,0,write,1
+3400,EKF,1,SIG,yaw_rate,0,write,1
+3400,EKF,1,SIG,EKF_fin,0,write,1
+3400,Core3_Core2,0,T,EKF,1,terminate
+3500,periodic_5ms,6,SIG,periodic_5ms_signal,0,write,1
+3500,Core0_compSched,0,T,periodic_5ms,6,terminate
+3500,PRE_SFM_gpu_POST,0,SIG,SFM_stim_signal,0,write,1
+3500,Core5_Core1,0,T,PRE_SFM_gpu_POST,0,poll
+3500,Planner,1,SIG,fused_objects,0,write,1
+3500,periodic_5ms_Trigger0,7,T,periodic_5ms,7,activate
+3500,Core0_compSched,0,T,periodic_5ms,7,start
+3500,DASM_Trigger0,6,T,DASM,6,activate
+3500,Core1_Core5,0,T,DASM,6,start
+3500,DASM,6,SIG,DASM_trigg,0,read,15
+3500,DASM,6,SIG,speed_objective,0,read,15
+3500,DASM,6,SIG,steer_objective,0,read,15
+3500,SFM_Trigger0,0,T,SFM,0,activate
+3500,Core7_GP10B,0,T,SFM,0,start
+3500,SFM,0,SIG,SFM_trigg,0,read,15
+3500,SFM,0,SIG,Matrix_SFM_device,0,read,15
+3500,SFM,0,SIG,IMU_data_host,0,read,15
+3500,SFM,0,SIG,frame,0,read,15
+3600,DASM,6,SIG,speed_objective,0,write,1
+3600,DASM,6,SIG,steer_objective,0,write,1
+3600,DASM,6,SIG,DASM_fin,0,write,1
+3600,Core1_Core5,0,T,DASM,6,terminate
+3600,SFM,0,SIG,Image_SFM_device,0,write,1
+3600,SFM,0,SIG,IMU_data_device,0,write,1
+3800,Lidar_Grabber,0,SIG,lg_mode,0,write,1
+3800,Lidar_Grabber,0,SIG,lidar_output,0,write,1
+3800,Lidar_Grabber,0,SIG,lidar_input,0,write,1
+3900,Planner,1,SIG,speed_objective,0,write,1
+3900,Planner,1,SIG,steer_objective,0,write,1
+3900,Planner,1,SIG,Planner_fin,0,write,1
+3900,Core4_Core0,0,T,Planner,1,terminate
+4000,periodic_5ms,7,SIG,periodic_5ms_signal,0,write,1
+4000,Core0_compSched,0,T,periodic_5ms,7,terminate
+4000,periodic_10ms,3,SIG,periodic_10ms_signal,0,write,1
+4000,Core0_compSched,0,T,periodic_10ms,3,terminate
+4000,periodic_5ms_Trigger0,8,T,periodic_5ms,8,activate
+4000,Core0_compSched,0,T,periodic_5ms,8,start
+4000,periodic_10ms_Trigger0,4,T,periodic_10ms,4,activate
+4000,Core0_compSched,0,T,periodic_10ms,4,start
+4000,CANbus_polling_Trigger0,3,T,CANbus_polling,3,activate
+4000,Core3_Core2,0,T,CANbus_polling,3,start
+4000,CANbus_polling,3,SIG,CANbus_polling_trigg,0,read,15
+4000,DASM_Trigger0,7,T,DASM,7,activate
+4000,Core1_Core5,0,T,DASM,7,start
+4000,DASM,7,SIG,DASM_trigg,0,read,15
+4000,DASM,7,SIG,speed_objective,0,read,15
+4000,DASM,7,SIG,steer_objective,0,read,15
+4100,CANbus_polling,3,SIG,Vehicle_status_host,0,write,1
+4100,CANbus_polling,3,SIG,CANbus_polling_fin,0,write,1
+4100,Core3_Core2,0,T,CANbus_polling,3,terminate
+4100,DASM,7,SIG,speed_objective,0,write,1
+4100,DASM,7,SIG,steer_objective,0,write,1
+4100,DASM,7,SIG,DASM_fin,0,write,1
+4100,Core1_Core5,0,T,DASM,7,terminate
+4200,SFM,0,SIG,bounding_boxes,0,write,1
+4200,SFM,0,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+4200,SFM,0,SIG,SFM_fin,0,write,1
+4200,Core7_GP10B,0,T,SFM,0,terminate
+4200,Core5_Core1,0,T,PRE_SFM_gpu_POST,0,run
+4200,PRE_SFM_gpu_POST,0,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+4200,PRE_SFM_gpu_POST,0,SIG,bounding_boxes,0,read,15
+4300,PRE_SFM_gpu_POST,0,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+4300,Lidar_Grabber,0,SIG,cg_mode,0,write,1
+4300,Lidar_Grabber,0,SIG,Image_host,0,write,1
+4300,Lidar_Grabber,0,SIG,frame,0,write,1
+4300,Lidar_Grabber,0,SIG,Image_lane_lines_host,0,write,1
+4300,Lidar_Grabber,0,SIG,Lidar_Grabber_fin,0,write,1
+4300,Core2_Core4,0,T,Lidar_Grabber,0,terminate
+4400,PRE_SFM_gpu_POST,0,SIG,bounding_boxes,0,write,1
+4400,PRE_SFM_gpu_POST,0,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+4400,Core5_Core1,0,T,PRE_SFM_gpu_POST,0,terminate
+4500,periodic_5ms,8,SIG,periodic_5ms_signal,0,write,1
+4500,Core0_compSched,0,T,periodic_5ms,8,terminate
+4500,periodic_15ms,2,SIG,periodic_15ms_signal,0,write,1
+4500,Core0_compSched,0,T,periodic_15ms,2,terminate
+4500,periodic_5ms_Trigger0,9,T,periodic_5ms,9,activate
+4500,Core0_compSched,0,T,periodic_5ms,9,start
+4500,periodic_15ms_Trigger0,3,T,periodic_15ms,3,activate
+4500,Core0_compSched,0,T,periodic_15ms,3,start
+4500,EKF_Trigger0,2,T,EKF,2,activate
+4500,Core3_Core2,0,T,EKF,2,start
+4500,EKF,2,SIG,EKF_trigg,0,read,15
+4500,EKF,2,SIG,Vehicle_status_host,0,read,15
+4500,EKF,2,SIG,object_poses,0,read,15
+4500,EKF,2,SIG,yaw_car_host,0,read,15
+4500,EKF,2,SIG,y_car_host,0,read,15
+4500,Planner_Trigger0,2,T,Planner,2,activate
+4500,Core4_Core0,0,T,Planner,2,start
+4500,Planner,2,SIG,Planner_trigg,0,read,15
+4500,Planner,2,SIG,vel_car,0,read,15
+4500,Planner,2,SIG,Lane_boundaries_host,0,read,15
+4500,Planner,2,SIG,Vehicle_status_host,0,read,15
+4500,Planner,2,SIG,Bounding_box_host,0,read,15
+4500,Planner,2,SIG,object_poses,0,read,15
+4500,Planner,2,SIG,lidar_input,0,read,15
+4500,Planner,2,SIG,bounding_boxes,0,read,15
+4500,Planner,2,SIG,yaw_car_host,0,read,15
+4500,Planner,2,SIG,y_car_host,0,read,15
+4500,Planner,2,SIG,fused_objects,0,read,15
+4500,Planner,2,SIG,yaw_rate,0,read,15
+4500,DASM_Trigger0,8,T,DASM,8,activate
+4500,Core1_Core5,0,T,DASM,8,start
+4500,DASM,8,SIG,DASM_trigg,0,read,15
+4500,DASM,8,SIG,speed_objective,0,read,15
+4500,DASM,8,SIG,steer_objective,0,read,15
+4600,DASM,8,SIG,speed_objective,0,write,1
+4600,DASM,8,SIG,steer_objective,0,write,1
+4600,DASM,8,SIG,DASM_fin,0,write,1
+4600,Core1_Core5,0,T,DASM,8,terminate
+4800,EKF,2,SIG,object_poses,0,write,1
+4800,EKF,2,SIG,y_car_host,0,write,1
+4800,EKF,2,SIG,yaw_car_host,0,write,1
+4800,EKF,2,SIG,vel_car,0,write,1
+4800,EKF,2,SIG,yaw_rate,0,write,1
+4800,EKF,2,SIG,EKF_fin,0,write,1
+4800,Core3_Core2,0,T,EKF,2,terminate
+5000,periodic_5ms,9,SIG,periodic_5ms_signal,0,write,1
+5000,Core0_compSched,0,T,periodic_5ms,9,terminate
+5000,periodic_10ms,4,SIG,periodic_10ms_signal,0,write,1
+5000,Core0_compSched,0,T,periodic_10ms,4,terminate
+5000,Planner,2,SIG,fused_objects,0,write,1
+5000,periodic_5ms_Trigger0,10,T,periodic_5ms,10,activate
+5000,Core0_compSched,0,T,periodic_5ms,10,start
+5000,periodic_10ms_Trigger0,5,T,periodic_10ms,5,activate
+5000,Core0_compSched,0,T,periodic_10ms,5,start
+5000,CANbus_polling_Trigger0,4,T,CANbus_polling,4,activate
+5000,Core3_Core2,0,T,CANbus_polling,4,start
+5000,CANbus_polling,4,SIG,CANbus_polling_trigg,0,read,15
+5000,DASM_Trigger0,9,T,DASM,9,activate
+5000,Core1_Core5,0,T,DASM,9,start
+5000,DASM,9,SIG,DASM_trigg,0,read,15
+5000,DASM,9,SIG,speed_objective,0,read,15
+5000,DASM,9,SIG,steer_objective,0,read,15
+5100,CANbus_polling,4,SIG,Vehicle_status_host,0,write,1
+5100,CANbus_polling,4,SIG,CANbus_polling_fin,0,write,1
+5100,Core3_Core2,0,T,CANbus_polling,4,terminate
+5100,DASM,9,SIG,speed_objective,0,write,1
+5100,DASM,9,SIG,steer_objective,0,write,1
+5100,DASM,9,SIG,DASM_fin,0,write,1
+5100,Core1_Core5,0,T,DASM,9,terminate
+5400,Planner,2,SIG,speed_objective,0,write,1
+5400,Planner,2,SIG,steer_objective,0,write,1
+5400,Planner,2,SIG,Planner_fin,0,write,1
+5400,Core4_Core0,0,T,Planner,2,terminate
+5500,periodic_5ms,10,SIG,periodic_5ms_signal,0,write,1
+5500,Core0_compSched,0,T,periodic_5ms,10,terminate
+5500,periodic_5ms_Trigger0,11,T,periodic_5ms,11,activate
+5500,Core0_compSched,0,T,periodic_5ms,11,start
+5500,DASM_Trigger0,10,T,DASM,10,activate
+5500,Core1_Core5,0,T,DASM,10,start
+5500,DASM,10,SIG,DASM_trigg,0,read,15
+5500,DASM,10,SIG,speed_objective,0,read,15
+5500,DASM,10,SIG,steer_objective,0,read,15
+5600,DASM,10,SIG,speed_objective,0,write,1
+5600,DASM,10,SIG,steer_objective,0,write,1
+5600,DASM,10,SIG,DASM_fin,0,write,1
+5600,Core1_Core5,0,T,DASM,10,terminate
+6000,periodic_5ms,11,SIG,periodic_5ms_signal,0,write,1
+6000,Core0_compSched,0,T,periodic_5ms,11,terminate
+6000,periodic_15ms,3,SIG,periodic_15ms_signal,0,write,1
+6000,Core0_compSched,0,T,periodic_15ms,3,terminate
+6000,periodic_10ms,5,SIG,periodic_10ms_signal,0,write,1
+6000,Core0_compSched,0,T,periodic_10ms,5,terminate
+6000,periodic_5ms_Trigger0,12,T,periodic_5ms,12,activate
+6000,Core0_compSched,0,T,periodic_5ms,12,start
+6000,periodic_15ms_Trigger0,4,T,periodic_15ms,4,activate
+6000,Core0_compSched,0,T,periodic_15ms,4,start
+6000,periodic_10ms_Trigger0,6,T,periodic_10ms,6,activate
+6000,Core0_compSched,0,T,periodic_10ms,6,start
+6000,CANbus_polling_Trigger0,5,T,CANbus_polling,5,activate
+6000,Core3_Core2,0,T,CANbus_polling,5,start
+6000,CANbus_polling,5,SIG,CANbus_polling_trigg,0,read,15
+6000,EKF_Trigger0,3,T,EKF,3,activate
+6000,Planner_Trigger0,3,T,Planner,3,activate
+6000,Core4_Core0,0,T,Planner,3,start
+6000,Planner,3,SIG,Planner_trigg,0,read,15
+6000,Planner,3,SIG,vel_car,0,read,15
+6000,Planner,3,SIG,Lane_boundaries_host,0,read,15
+6000,Planner,3,SIG,Vehicle_status_host,0,read,15
+6000,Planner,3,SIG,Bounding_box_host,0,read,15
+6000,Planner,3,SIG,object_poses,0,read,15
+6000,Planner,3,SIG,lidar_input,0,read,15
+6000,Planner,3,SIG,bounding_boxes,0,read,15
+6000,Planner,3,SIG,yaw_car_host,0,read,15
+6000,Planner,3,SIG,y_car_host,0,read,15
+6000,Planner,3,SIG,fused_objects,0,read,15
+6000,Planner,3,SIG,yaw_rate,0,read,15
+6000,DASM_Trigger0,11,T,DASM,11,activate
+6000,Core1_Core5,0,T,DASM,11,start
+6000,DASM,11,SIG,DASM_trigg,0,read,15
+6000,DASM,11,SIG,speed_objective,0,read,15
+6000,DASM,11,SIG,steer_objective,0,read,15
+6100,CANbus_polling,5,SIG,Vehicle_status_host,0,write,1
+6100,CANbus_polling,5,SIG,CANbus_polling_fin,0,write,1
+6100,Core3_Core2,0,T,CANbus_polling,5,terminate
+6100,DASM,11,SIG,speed_objective,0,write,1
+6100,DASM,11,SIG,steer_objective,0,write,1
+6100,DASM,11,SIG,DASM_fin,0,write,1
+6100,Core1_Core5,0,T,DASM,11,terminate
+6100,Core3_Core2,0,T,EKF,3,start
+6100,EKF,3,SIG,EKF_trigg,0,read,15
+6100,EKF,3,SIG,Vehicle_status_host,0,read,15
+6100,EKF,3,SIG,object_poses,0,read,15
+6100,EKF,3,SIG,yaw_car_host,0,read,15
+6100,EKF,3,SIG,y_car_host,0,read,15
+6400,EKF,3,SIG,object_poses,0,write,1
+6400,EKF,3,SIG,y_car_host,0,write,1
+6400,EKF,3,SIG,yaw_car_host,0,write,1
+6400,EKF,3,SIG,vel_car,0,write,1
+6400,EKF,3,SIG,yaw_rate,0,write,1
+6400,EKF,3,SIG,EKF_fin,0,write,1
+6400,Core3_Core2,0,T,EKF,3,terminate
+6500,periodic_5ms,12,SIG,periodic_5ms_signal,0,write,1
+6500,Core0_compSched,0,T,periodic_5ms,12,terminate
+6500,Planner,3,SIG,fused_objects,0,write,1
+6500,periodic_5ms_Trigger0,13,T,periodic_5ms,13,activate
+6500,Core0_compSched,0,T,periodic_5ms,13,start
+6500,DASM_Trigger0,12,T,DASM,12,activate
+6500,Core1_Core5,0,T,DASM,12,start
+6500,DASM,12,SIG,DASM_trigg,0,read,15
+6500,DASM,12,SIG,speed_objective,0,read,15
+6500,DASM,12,SIG,steer_objective,0,read,15
+6600,periodic_33ms,1,SIG,periodic_33ms_signal,0,write,1
+6600,Core0_compSched,0,T,periodic_33ms,1,terminate
+6600,periodic_66ms,0,SIG,periodic_66ms_signal,0,write,1
+6600,Core0_compSched,0,T,periodic_66ms,0,terminate
+6600,DASM,12,SIG,speed_objective,0,write,1
+6600,DASM,12,SIG,steer_objective,0,write,1
+6600,DASM,12,SIG,DASM_fin,0,write,1
+6600,Core1_Core5,0,T,DASM,12,terminate
+6600,C3__A3b,0,SIG,sd_camera,0,write,2
+6600,Core0_compSched,0,T,C3__A3b,0,terminate
+6600,periodic_33ms_Trigger0,2,T,periodic_33ms,2,activate
+6600,Core0_compSched,0,T,periodic_33ms,2,start
+6600,periodic_66ms_Trigger0,1,T,periodic_66ms,1,activate
+6600,Core0_compSched,0,T,periodic_66ms,1,start
+6600,PRE_Lane_detection_gpu_POST_Trigger0,0,T,PRE_Lane_detection_gpu_POST,0,activate
+6600,PRE_SFM_gpu_POST_Trigger0,1,T,PRE_SFM_gpu_POST,1,activate
+6600,Core5_Core1,0,T,PRE_SFM_gpu_POST,1,start
+6600,PRE_SFM_gpu_POST,1,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+6600,PRE_SFM_gpu_POST,1,SIG,frame,0,read,15
+6600,Lidar_Grabber_Trigger0,1,T,Lidar_Grabber,1,activate
+6600,Core2_Core4,0,T,Lidar_Grabber,1,start
+6600,Lidar_Grabber,1,SIG,Camera.transient_failure,0,read,1
+6600,Lidar_Grabber,1,SIG,Camera.permanent_failure,0,read,1
+6600,Lidar_Grabber,1,SIG,Lidar.permanent_failure,0,read,1
+6600,Lidar_Grabber,1,SIG,Lidar_Grabber_trigg,0,read,15
+6600,Lidar_Grabber,1,SIG,Lidar.transient_failure,0,read,1
+6600,Lidar_Grabber,1,SIG,sd_lidar,0,read,15
+6600,Lidar_Grabber,1,SIG,sd_camera,0,read,15
+6600,C3__A3b_Trigger0,1,T,C3__A3b,1,activate
+6600,Core0_compSched,0,T,C3__A3b,1,start
+6600,C3__A3b,1,SIG,dummy,0,read,15
+6800,PRE_SFM_gpu_POST,1,SIG,SFM_stim_signal,0,write,1
+6800,Core5_Core1,0,T,PRE_SFM_gpu_POST,1,poll
+6800,SFM_Trigger0,1,T,SFM,1,activate
+6800,Core7_GP10B,0,T,SFM,1,start
+6800,SFM,1,SIG,SFM_trigg,0,read,15
+6800,SFM,1,SIG,Matrix_SFM_device,0,read,15
+6800,SFM,1,SIG,IMU_data_host,0,read,15
+6800,SFM,1,SIG,frame,0,read,15
+6900,Planner,3,SIG,speed_objective,0,write,1
+6900,Planner,3,SIG,steer_objective,0,write,1
+6900,Planner,3,SIG,Planner_fin,0,write,1
+6900,Core4_Core0,0,T,Planner,3,terminate
+6900,SFM,1,SIG,Image_SFM_device,0,write,1
+6900,SFM,1,SIG,IMU_data_device,0,write,1
+7000,periodic_5ms,13,SIG,periodic_5ms_signal,0,write,1
+7000,Core0_compSched,0,T,periodic_5ms,13,terminate
+7000,periodic_10ms,6,SIG,periodic_10ms_signal,0,write,1
+7000,Core0_compSched,0,T,periodic_10ms,6,terminate
+7000,periodic_5ms_Trigger0,14,T,periodic_5ms,14,activate
+7000,Core0_compSched,0,T,periodic_5ms,14,start
+7000,periodic_10ms_Trigger0,7,T,periodic_10ms,7,activate
+7000,Core0_compSched,0,T,periodic_10ms,7,start
+7000,CANbus_polling_Trigger0,6,T,CANbus_polling,6,activate
+7000,Core3_Core2,0,T,CANbus_polling,6,start
+7000,CANbus_polling,6,SIG,CANbus_polling_trigg,0,read,15
+7000,DASM_Trigger0,13,T,DASM,13,activate
+7000,Core1_Core5,0,T,DASM,13,start
+7000,DASM,13,SIG,DASM_trigg,0,read,15
+7000,DASM,13,SIG,speed_objective,0,read,15
+7000,DASM,13,SIG,steer_objective,0,read,15
+7100,Lidar_Grabber,1,SIG,lg_mode,0,write,1
+7100,Lidar_Grabber,1,SIG,lidar_output,0,write,1
+7100,Lidar_Grabber,1,SIG,lidar_input,0,write,1
+7100,CANbus_polling,6,SIG,Vehicle_status_host,0,write,1
+7100,CANbus_polling,6,SIG,CANbus_polling_fin,0,write,1
+7100,Core3_Core2,0,T,CANbus_polling,6,terminate
+7100,DASM,13,SIG,speed_objective,0,write,1
+7100,DASM,13,SIG,steer_objective,0,write,1
+7100,DASM,13,SIG,DASM_fin,0,write,1
+7100,Core1_Core5,0,T,DASM,13,terminate
+7500,periodic_5ms,14,SIG,periodic_5ms_signal,0,write,1
+7500,Core0_compSched,0,T,periodic_5ms,14,terminate
+7500,periodic_15ms,4,SIG,periodic_15ms_signal,0,write,1
+7500,Core0_compSched,0,T,periodic_15ms,4,terminate
+7500,SFM,1,SIG,bounding_boxes,0,write,1
+7500,SFM,1,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+7500,SFM,1,SIG,SFM_fin,0,write,1
+7500,Core7_GP10B,0,T,SFM,1,terminate
+7500,periodic_5ms_Trigger0,15,T,periodic_5ms,15,activate
+7500,Core0_compSched,0,T,periodic_5ms,15,start
+7500,periodic_15ms_Trigger0,5,T,periodic_15ms,5,activate
+7500,Core0_compSched,0,T,periodic_15ms,5,start
+7500,Core5_Core1,0,T,PRE_SFM_gpu_POST,1,run
+7500,PRE_SFM_gpu_POST,1,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+7500,PRE_SFM_gpu_POST,1,SIG,bounding_boxes,0,read,15
+7500,EKF_Trigger0,4,T,EKF,4,activate
+7500,Core3_Core2,0,T,EKF,4,start
+7500,EKF,4,SIG,EKF_trigg,0,read,15
+7500,EKF,4,SIG,Vehicle_status_host,0,read,15
+7500,EKF,4,SIG,object_poses,0,read,15
+7500,EKF,4,SIG,yaw_car_host,0,read,15
+7500,EKF,4,SIG,y_car_host,0,read,15
+7500,Planner_Trigger0,4,T,Planner,4,activate
+7500,Core4_Core0,0,T,Planner,4,start
+7500,Planner,4,SIG,Planner_trigg,0,read,15
+7500,Planner,4,SIG,vel_car,0,read,15
+7500,Planner,4,SIG,Lane_boundaries_host,0,read,15
+7500,Planner,4,SIG,Vehicle_status_host,0,read,15
+7500,Planner,4,SIG,Bounding_box_host,0,read,15
+7500,Planner,4,SIG,object_poses,0,read,15
+7500,Planner,4,SIG,lidar_input,0,read,15
+7500,Planner,4,SIG,bounding_boxes,0,read,15
+7500,Planner,4,SIG,yaw_car_host,0,read,15
+7500,Planner,4,SIG,y_car_host,0,read,15
+7500,Planner,4,SIG,fused_objects,0,read,15
+7500,Planner,4,SIG,yaw_rate,0,read,15
+7500,DASM_Trigger0,14,T,DASM,14,activate
+7500,Core1_Core5,0,T,DASM,14,start
+7500,DASM,14,SIG,DASM_trigg,0,read,15
+7500,DASM,14,SIG,speed_objective,0,read,15
+7500,DASM,14,SIG,steer_objective,0,read,15
+7600,PRE_SFM_gpu_POST,1,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+7600,Lidar_Grabber,1,SIG,cg_mode,0,write,1
+7600,Lidar_Grabber,1,SIG,Image_host,0,write,1
+7600,Lidar_Grabber,1,SIG,frame,0,write,2
+7600,Lidar_Grabber,1,SIG,Image_lane_lines_host,0,write,1
+7600,Lidar_Grabber,1,SIG,Lidar_Grabber_fin,0,write,1
+7600,Core2_Core4,0,T,Lidar_Grabber,1,terminate
+7600,DASM,14,SIG,speed_objective,0,write,1
+7600,DASM,14,SIG,steer_objective,0,write,1
+7600,DASM,14,SIG,DASM_fin,0,write,1
+7600,Core1_Core5,0,T,DASM,14,terminate
+7700,PRE_SFM_gpu_POST,1,SIG,bounding_boxes,0,write,1
+7700,PRE_SFM_gpu_POST,1,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+7700,Core5_Core1,0,T,PRE_SFM_gpu_POST,1,terminate
+7700,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,start
+7700,PRE_Lane_detection_gpu_POST,0,SIG,PRE_Lane_detection_gpu_POST_trigg,0,read,15
+7700,PRE_Lane_detection_gpu_POST,0,SIG,Image_lane_lines_host,0,read,15
+7800,EKF,4,SIG,object_poses,0,write,1
+7800,EKF,4,SIG,y_car_host,0,write,1
+7800,EKF,4,SIG,yaw_car_host,0,write,1
+7800,EKF,4,SIG,vel_car,0,write,1
+7800,EKF,4,SIG,yaw_rate,0,write,1
+7800,EKF,4,SIG,EKF_fin,0,write,1
+7800,Core3_Core2,0,T,EKF,4,terminate
+8000,periodic_5ms,15,SIG,periodic_5ms_signal,0,write,1
+8000,Core0_compSched,0,T,periodic_5ms,15,terminate
+8000,periodic_10ms,7,SIG,periodic_10ms_signal,0,write,1
+8000,Core0_compSched,0,T,periodic_10ms,7,terminate
+8000,PRE_Lane_detection_gpu_POST,0,SIG,Image_lane_lines_host,0,write,1
+8000,PRE_Lane_detection_gpu_POST,0,SIG,Lane_detection_stim_signal,0,write,1
+8000,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,poll
+8000,Planner,4,SIG,fused_objects,0,write,1
+8000,periodic_5ms_Trigger0,16,T,periodic_5ms,16,activate
+8000,Core0_compSched,0,T,periodic_5ms,16,start
+8000,periodic_10ms_Trigger0,8,T,periodic_10ms,8,activate
+8000,Core0_compSched,0,T,periodic_10ms,8,start
+8000,Lane_detection_Trigger0,0,T,Lane_detection,0,activate
+8000,CANbus_polling_Trigger0,7,T,CANbus_polling,7,activate
+8000,Core3_Core2,0,T,CANbus_polling,7,start
+8000,CANbus_polling,7,SIG,CANbus_polling_trigg,0,read,15
+8000,DASM_Trigger0,15,T,DASM,15,activate
+8000,Core1_Core5,0,T,DASM,15,start
+8000,DASM,15,SIG,DASM_trigg,0,read,15
+8000,DASM,15,SIG,speed_objective,0,read,15
+8000,DASM,15,SIG,steer_objective,0,read,15
+8100,CANbus_polling,7,SIG,Vehicle_status_host,0,write,1
+8100,CANbus_polling,7,SIG,CANbus_polling_fin,0,write,1
+8100,Core3_Core2,0,T,CANbus_polling,7,terminate
+8100,DASM,15,SIG,speed_objective,0,write,1
+8100,DASM,15,SIG,steer_objective,0,write,1
+8100,DASM,15,SIG,DASM_fin,0,write,1
+8100,Core1_Core5,0,T,DASM,15,terminate
+8400,Planner,4,SIG,speed_objective,0,write,1
+8400,Planner,4,SIG,steer_objective,0,write,1
+8400,Planner,4,SIG,Planner_fin,0,write,1
+8400,Core4_Core0,0,T,Planner,4,terminate
+8500,periodic_5ms,16,SIG,periodic_5ms_signal,0,write,1
+8500,Core0_compSched,0,T,periodic_5ms,16,terminate
+8500,periodic_5ms_Trigger0,17,T,periodic_5ms,17,activate
+8500,Core0_compSched,0,T,periodic_5ms,17,start
+8500,DASM_Trigger0,16,T,DASM,16,activate
+8500,Core1_Core5,0,T,DASM,16,start
+8500,DASM,16,SIG,DASM_trigg,0,read,15
+8500,DASM,16,SIG,speed_objective,0,read,15
+8500,DASM,16,SIG,steer_objective,0,read,15
+8600,DASM,16,SIG,speed_objective,0,write,1
+8600,DASM,16,SIG,steer_objective,0,write,1
+8600,DASM,16,SIG,DASM_fin,0,write,1
+8600,Core1_Core5,0,T,DASM,16,terminate
+9000,periodic_5ms,17,SIG,periodic_5ms_signal,0,write,1
+9000,Core0_compSched,0,T,periodic_5ms,17,terminate
+9000,periodic_15ms,5,SIG,periodic_15ms_signal,0,write,1
+9000,Core0_compSched,0,T,periodic_15ms,5,terminate
+9000,periodic_10ms,8,SIG,periodic_10ms_signal,0,write,1
+9000,Core0_compSched,0,T,periodic_10ms,8,terminate
+9000,periodic_5ms_Trigger0,18,T,periodic_5ms,18,activate
+9000,Core0_compSched,0,T,periodic_5ms,18,start
+9000,periodic_15ms_Trigger0,6,T,periodic_15ms,6,activate
+9000,Core0_compSched,0,T,periodic_15ms,6,start
+9000,periodic_10ms_Trigger0,9,T,periodic_10ms,9,activate
+9000,Core0_compSched,0,T,periodic_10ms,9,start
+9000,CANbus_polling_Trigger0,8,T,CANbus_polling,8,activate
+9000,Core3_Core2,0,T,CANbus_polling,8,start
+9000,CANbus_polling,8,SIG,CANbus_polling_trigg,0,read,15
+9000,EKF_Trigger0,5,T,EKF,5,activate
+9000,Planner_Trigger0,5,T,Planner,5,activate
+9000,Core4_Core0,0,T,Planner,5,start
+9000,Planner,5,SIG,Planner_trigg,0,read,15
+9000,Planner,5,SIG,vel_car,0,read,15
+9000,Planner,5,SIG,Lane_boundaries_host,0,read,15
+9000,Planner,5,SIG,Vehicle_status_host,0,read,15
+9000,Planner,5,SIG,Bounding_box_host,0,read,15
+9000,Planner,5,SIG,object_poses,0,read,15
+9000,Planner,5,SIG,lidar_input,0,read,15
+9000,Planner,5,SIG,bounding_boxes,0,read,15
+9000,Planner,5,SIG,yaw_car_host,0,read,15
+9000,Planner,5,SIG,y_car_host,0,read,15
+9000,Planner,5,SIG,fused_objects,0,read,15
+9000,Planner,5,SIG,yaw_rate,0,read,15
+9000,DASM_Trigger0,17,T,DASM,17,activate
+9000,Core1_Core5,0,T,DASM,17,start
+9000,DASM,17,SIG,DASM_trigg,0,read,15
+9000,DASM,17,SIG,speed_objective,0,read,15
+9000,DASM,17,SIG,steer_objective,0,read,15
+9100,CANbus_polling,8,SIG,Vehicle_status_host,0,write,1
+9100,CANbus_polling,8,SIG,CANbus_polling_fin,0,write,1
+9100,Core3_Core2,0,T,CANbus_polling,8,terminate
+9100,DASM,17,SIG,speed_objective,0,write,1
+9100,DASM,17,SIG,steer_objective,0,write,1
+9100,DASM,17,SIG,DASM_fin,0,write,1
+9100,Core1_Core5,0,T,DASM,17,terminate
+9100,Core3_Core2,0,T,EKF,5,start
+9100,EKF,5,SIG,EKF_trigg,0,read,15
+9100,EKF,5,SIG,Vehicle_status_host,0,read,15
+9100,EKF,5,SIG,object_poses,0,read,15
+9100,EKF,5,SIG,yaw_car_host,0,read,15
+9100,EKF,5,SIG,y_car_host,0,read,15
+9400,EKF,5,SIG,object_poses,0,write,1
+9400,EKF,5,SIG,y_car_host,0,write,1
+9400,EKF,5,SIG,yaw_car_host,0,write,1
+9400,EKF,5,SIG,vel_car,0,write,1
+9400,EKF,5,SIG,yaw_rate,0,write,1
+9400,EKF,5,SIG,EKF_fin,0,write,1
+9400,Core3_Core2,0,T,EKF,5,terminate
+9500,periodic_5ms,18,SIG,periodic_5ms_signal,0,write,1
+9500,Core0_compSched,0,T,periodic_5ms,18,terminate
+9500,Planner,5,SIG,fused_objects,0,write,1
+9500,periodic_5ms_Trigger0,19,T,periodic_5ms,19,activate
+9500,Core0_compSched,0,T,periodic_5ms,19,start
+9500,DASM_Trigger0,18,T,DASM,18,activate
+9500,Core1_Core5,0,T,DASM,18,start
+9500,DASM,18,SIG,DASM_trigg,0,read,15
+9500,DASM,18,SIG,speed_objective,0,read,15
+9500,DASM,18,SIG,steer_objective,0,read,15
+9600,DASM,18,SIG,speed_objective,0,write,1
+9600,DASM,18,SIG,steer_objective,0,write,1
+9600,DASM,18,SIG,DASM_fin,0,write,1
+9600,Core1_Core5,0,T,DASM,18,terminate
+9900,periodic_33ms,2,SIG,periodic_33ms_signal,0,write,1
+9900,Core0_compSched,0,T,periodic_33ms,2,terminate
+9900,Planner,5,SIG,speed_objective,0,write,1
+9900,Planner,5,SIG,steer_objective,0,write,1
+9900,Planner,5,SIG,Planner_fin,0,write,1
+9900,Core4_Core0,0,T,Planner,5,terminate
+9900,periodic_33ms_Trigger0,3,T,periodic_33ms,3,activate
+9900,Core0_compSched,0,T,periodic_33ms,3,start
+9900,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,park
+9900,PRE_SFM_gpu_POST_Trigger0,2,T,PRE_SFM_gpu_POST,2,activate
+9900,Core5_Core1,0,T,PRE_SFM_gpu_POST,2,start
+9900,PRE_SFM_gpu_POST,2,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+9900,PRE_SFM_gpu_POST,2,SIG,frame,0,read,15
+9900,Lidar_Grabber_Trigger0,2,T,Lidar_Grabber,2,activate
+9900,Core2_Core4,0,T,Lidar_Grabber,2,start
+9900,Lidar_Grabber,2,SIG,Camera.transient_failure,0,read,2
+9900,Lidar_Grabber,2,SIG,Lidar.permanent_failure,0,read,1
+9900,Lidar_Grabber,2,SIG,Lidar_Grabber_trigg,0,read,15
+9900,Lidar_Grabber,2,SIG,Lidar.transient_failure,0,read,1
+9900,Lidar_Grabber,2,SIG,sd_lidar,0,read,1
+9900,Lidar_Grabber,2,SIG,sd_camera,0,read,1
+10000,periodic_100ms,0,SIG,periodic_100ms_signal,0,write,1
+10000,Core0_compSched,0,T,periodic_100ms,0,terminate
+10000,periodic_5ms,19,SIG,periodic_5ms_signal,0,write,1
+10000,Core0_compSched,0,T,periodic_5ms,19,terminate
+10000,periodic_10ms,9,SIG,periodic_10ms_signal,0,write,1
+10000,Core0_compSched,0,T,periodic_10ms,9,terminate
+10000,periodic_100ms_Trigger0,1,T,periodic_100ms,1,activate
+10000,Core0_compSched,0,T,periodic_100ms,1,start
+10000,periodic_5ms_Trigger0,20,T,periodic_5ms,20,activate
+10000,Core0_compSched,0,T,periodic_5ms,20,start
+10000,periodic_10ms_Trigger0,10,T,periodic_10ms,10,activate
+10000,Core0_compSched,0,T,periodic_10ms,10,start
+10000,OS_Overhead_Trigger0,0,T,OS_Overhead,0,activate
+10000,CANbus_polling_Trigger0,9,T,CANbus_polling,9,activate
+10000,Core3_Core2,0,T,CANbus_polling,9,start
+10000,CANbus_polling,9,SIG,CANbus_polling_trigg,0,read,15
+10000,DASM_Trigger0,19,T,DASM,19,activate
+10000,Core1_Core5,0,T,DASM,19,start
+10000,DASM,19,SIG,DASM_trigg,0,read,15
+10000,DASM,19,SIG,speed_objective,0,read,15
+10000,DASM,19,SIG,steer_objective,0,read,15
+10100,PRE_SFM_gpu_POST,2,SIG,SFM_stim_signal,0,write,1
+10100,Core5_Core1,0,T,PRE_SFM_gpu_POST,2,poll
+10100,CANbus_polling,9,SIG,Vehicle_status_host,0,write,1
+10100,CANbus_polling,9,SIG,CANbus_polling_fin,0,write,1
+10100,Core3_Core2,0,T,CANbus_polling,9,terminate
+10100,SFM_Trigger0,2,T,SFM,2,activate
+10100,Core7_GP10B,0,T,SFM,2,start
+10100,SFM,2,SIG,SFM_trigg,0,read,15
+10100,SFM,2,SIG,Matrix_SFM_device,0,read,15
+10100,SFM,2,SIG,IMU_data_host,0,read,15
+10100,SFM,2,SIG,frame,0,read,15
+10100,DASM,19,SIG,speed_objective,0,write,1
+10100,DASM,19,SIG,steer_objective,0,write,1
+10100,DASM,19,SIG,DASM_fin,0,write,1
+10100,Core1_Core5,0,T,DASM,19,terminate
+10100,Core1_Core5,0,T,OS_Overhead,0,start
+10100,OS_Overhead,0,SIG,OS_Overhead_trigg,0,read,15
+10200,SFM,2,SIG,Image_SFM_device,0,write,1
+10200,SFM,2,SIG,IMU_data_device,0,write,1
+10400,Lidar_Grabber,2,SIG,lg_mode,0,write,1
+10400,Lidar_Grabber,2,SIG,lidar_output,0,write,1
+10400,Lidar_Grabber,2,SIG,lidar_input,0,write,1
+10500,periodic_5ms,20,SIG,periodic_5ms_signal,0,write,1
+10500,Core0_compSched,0,T,periodic_5ms,20,terminate
+10500,periodic_15ms,6,SIG,periodic_15ms_signal,0,write,1
+10500,Core0_compSched,0,T,periodic_15ms,6,terminate
+10500,periodic_5ms_Trigger0,21,T,periodic_5ms,21,activate
+10500,Core0_compSched,0,T,periodic_5ms,21,start
+10500,periodic_15ms_Trigger0,7,T,periodic_15ms,7,activate
+10500,Core0_compSched,0,T,periodic_15ms,7,start
+10500,Core1_Core5,0,T,OS_Overhead,0,preempt
+10500,EKF_Trigger0,6,T,EKF,6,activate
+10500,Core3_Core2,0,T,EKF,6,start
+10500,EKF,6,SIG,EKF_trigg,0,read,15
+10500,EKF,6,SIG,Vehicle_status_host,0,read,15
+10500,EKF,6,SIG,object_poses,0,read,15
+10500,EKF,6,SIG,yaw_car_host,0,read,15
+10500,EKF,6,SIG,y_car_host,0,read,15
+10500,Planner_Trigger0,6,T,Planner,6,activate
+10500,Core4_Core0,0,T,Planner,6,start
+10500,Planner,6,SIG,Planner_trigg,0,read,15
+10500,Planner,6,SIG,vel_car,0,read,15
+10500,Planner,6,SIG,Lane_boundaries_host,0,read,15
+10500,Planner,6,SIG,Vehicle_status_host,0,read,15
+10500,Planner,6,SIG,Bounding_box_host,0,read,15
+10500,Planner,6,SIG,object_poses,0,read,15
+10500,Planner,6,SIG,lidar_input,0,read,15
+10500,Planner,6,SIG,bounding_boxes,0,read,15
+10500,Planner,6,SIG,yaw_car_host,0,read,15
+10500,Planner,6,SIG,y_car_host,0,read,15
+10500,Planner,6,SIG,fused_objects,0,read,15
+10500,Planner,6,SIG,yaw_rate,0,read,15
+10500,DASM_Trigger0,20,T,DASM,20,activate
+10500,Core1_Core5,0,T,DASM,20,start
+10500,DASM,20,SIG,DASM_trigg,0,read,15
+10500,DASM,20,SIG,speed_objective,0,read,15
+10500,DASM,20,SIG,steer_objective,0,read,15
+10600,DASM,20,SIG,speed_objective,0,write,1
+10600,DASM,20,SIG,steer_objective,0,write,1
+10600,DASM,20,SIG,DASM_fin,0,write,1
+10600,Core1_Core5,0,T,DASM,20,terminate
+10600,Core1_Core5,0,T,OS_Overhead,0,resume
+10800,EKF,6,SIG,object_poses,0,write,1
+10800,EKF,6,SIG,y_car_host,0,write,1
+10800,EKF,6,SIG,yaw_car_host,0,write,1
+10800,EKF,6,SIG,vel_car,0,write,1
+10800,EKF,6,SIG,yaw_rate,0,write,1
+10800,EKF,6,SIG,EKF_fin,0,write,1
+10800,Core3_Core2,0,T,EKF,6,terminate
+10800,SFM,2,SIG,bounding_boxes,0,write,1
+10800,SFM,2,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+10800,SFM,2,SIG,SFM_fin,0,write,1
+10800,Core7_GP10B,0,T,SFM,2,terminate
+10800,Core5_Core1,0,T,PRE_SFM_gpu_POST,2,run
+10800,PRE_SFM_gpu_POST,2,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+10800,PRE_SFM_gpu_POST,2,SIG,bounding_boxes,0,read,15
+10900,PRE_SFM_gpu_POST,2,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+10900,Lidar_Grabber,2,SIG,cg_mode,0,write,2
+10900,Lidar_Grabber,2,SIG,Lidar_Grabber_fin,0,write,1
+10900,Core2_Core4,0,T,Lidar_Grabber,2,terminate
+11000,periodic_5ms,21,SIG,periodic_5ms_signal,0,write,1
+11000,Core0_compSched,0,T,periodic_5ms,21,terminate
+11000,periodic_10ms,10,SIG,periodic_10ms_signal,0,write,1
+11000,Core0_compSched,0,T,periodic_10ms,10,terminate
+11000,PRE_SFM_gpu_POST,2,SIG,bounding_boxes,0,write,1
+11000,PRE_SFM_gpu_POST,2,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+11000,Core5_Core1,0,T,PRE_SFM_gpu_POST,2,terminate
+11000,Planner,6,SIG,fused_objects,0,write,1
+11000,periodic_5ms_Trigger0,22,T,periodic_5ms,22,activate
+11000,Core0_compSched,0,T,periodic_5ms,22,start
+11000,periodic_10ms_Trigger0,11,T,periodic_10ms,11,activate
+11000,Core0_compSched,0,T,periodic_10ms,11,start
+11000,Core1_Core5,0,T,OS_Overhead,0,preempt
+11000,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,poll_parking
+11000,CANbus_polling_Trigger0,10,T,CANbus_polling,10,activate
+11000,Core3_Core2,0,T,CANbus_polling,10,start
+11000,CANbus_polling,10,SIG,CANbus_polling_trigg,0,read,15
+11000,DASM_Trigger0,21,T,DASM,21,activate
+11000,Core1_Core5,0,T,DASM,21,start
+11000,DASM,21,SIG,DASM_trigg,0,read,15
+11000,DASM,21,SIG,speed_objective,0,read,15
+11000,DASM,21,SIG,steer_objective,0,read,15
+11100,CANbus_polling,10,SIG,Vehicle_status_host,0,write,1
+11100,CANbus_polling,10,SIG,CANbus_polling_fin,0,write,1
+11100,Core3_Core2,0,T,CANbus_polling,10,terminate
+11100,DASM,21,SIG,speed_objective,0,write,1
+11100,DASM,21,SIG,steer_objective,0,write,1
+11100,DASM,21,SIG,DASM_fin,0,write,1
+11100,Core1_Core5,0,T,DASM,21,terminate
+11100,Core1_Core5,0,T,OS_Overhead,0,resume
+11400,Planner,6,SIG,speed_objective,0,write,1
+11400,Planner,6,SIG,steer_objective,0,write,1
+11400,Planner,6,SIG,Planner_fin,0,write,1
+11400,Core4_Core0,0,T,Planner,6,terminate
+11500,periodic_5ms,22,SIG,periodic_5ms_signal,0,write,1
+11500,Core0_compSched,0,T,periodic_5ms,22,terminate
+11500,periodic_5ms_Trigger0,23,T,periodic_5ms,23,activate
+11500,Core0_compSched,0,T,periodic_5ms,23,start
+11500,Core1_Core5,0,T,OS_Overhead,0,preempt
+11500,DASM_Trigger0,22,T,DASM,22,activate
+11500,Core1_Core5,0,T,DASM,22,start
+11500,DASM,22,SIG,DASM_trigg,0,read,15
+11500,DASM,22,SIG,speed_objective,0,read,15
+11500,DASM,22,SIG,steer_objective,0,read,15
+11600,DASM,22,SIG,speed_objective,0,write,1
+11600,DASM,22,SIG,steer_objective,0,write,1
+11600,DASM,22,SIG,DASM_fin,0,write,1
+11600,Core1_Core5,0,T,DASM,22,terminate
+11600,Core1_Core5,0,T,OS_Overhead,0,resume
+12000,periodic_5ms,23,SIG,periodic_5ms_signal,0,write,1
+12000,Core0_compSched,0,T,periodic_5ms,23,terminate
+12000,periodic_15ms,7,SIG,periodic_15ms_signal,0,write,1
+12000,Core0_compSched,0,T,periodic_15ms,7,terminate
+12000,periodic_10ms,11,SIG,periodic_10ms_signal,0,write,1
+12000,Core0_compSched,0,T,periodic_10ms,11,terminate
+12000,periodic_5ms_Trigger0,24,T,periodic_5ms,24,activate
+12000,Core0_compSched,0,T,periodic_5ms,24,start
+12000,periodic_15ms_Trigger0,8,T,periodic_15ms,8,activate
+12000,Core0_compSched,0,T,periodic_15ms,8,start
+12000,periodic_10ms_Trigger0,12,T,periodic_10ms,12,activate
+12000,Core0_compSched,0,T,periodic_10ms,12,start
+12000,Core1_Core5,0,T,OS_Overhead,0,preempt
+12000,CANbus_polling_Trigger0,11,T,CANbus_polling,11,activate
+12000,Core3_Core2,0,T,CANbus_polling,11,start
+12000,CANbus_polling,11,SIG,CANbus_polling_trigg,0,read,15
+12000,EKF_Trigger0,7,T,EKF,7,activate
+12000,Planner_Trigger0,7,T,Planner,7,activate
+12000,Core4_Core0,0,T,Planner,7,start
+12000,Planner,7,SIG,Planner_trigg,0,read,15
+12000,Planner,7,SIG,vel_car,0,read,15
+12000,Planner,7,SIG,Lane_boundaries_host,0,read,15
+12000,Planner,7,SIG,Vehicle_status_host,0,read,15
+12000,Planner,7,SIG,Bounding_box_host,0,read,15
+12000,Planner,7,SIG,object_poses,0,read,15
+12000,Planner,7,SIG,lidar_input,0,read,15
+12000,Planner,7,SIG,bounding_boxes,0,read,15
+12000,Planner,7,SIG,yaw_car_host,0,read,15
+12000,Planner,7,SIG,y_car_host,0,read,15
+12000,Planner,7,SIG,fused_objects,0,read,15
+12000,Planner,7,SIG,yaw_rate,0,read,15
+12000,DASM_Trigger0,23,T,DASM,23,activate
+12000,Core1_Core5,0,T,DASM,23,start
+12000,DASM,23,SIG,DASM_trigg,0,read,15
+12000,DASM,23,SIG,speed_objective,0,read,15
+12000,DASM,23,SIG,steer_objective,0,read,15
+12100,CANbus_polling,11,SIG,Vehicle_status_host,0,write,1
+12100,CANbus_polling,11,SIG,CANbus_polling_fin,0,write,1
+12100,Core3_Core2,0,T,CANbus_polling,11,terminate
+12100,DASM,23,SIG,speed_objective,0,write,1
+12100,DASM,23,SIG,steer_objective,0,write,1
+12100,DASM,23,SIG,DASM_fin,0,write,1
+12100,Core1_Core5,0,T,DASM,23,terminate
+12100,Core1_Core5,0,T,OS_Overhead,0,resume
+12100,Core3_Core2,0,T,EKF,7,start
+12100,EKF,7,SIG,EKF_trigg,0,read,15
+12100,EKF,7,SIG,Vehicle_status_host,0,read,15
+12100,EKF,7,SIG,object_poses,0,read,15
+12100,EKF,7,SIG,yaw_car_host,0,read,15
+12100,EKF,7,SIG,y_car_host,0,read,15
+12400,EKF,7,SIG,object_poses,0,write,1
+12400,EKF,7,SIG,y_car_host,0,write,1
+12400,EKF,7,SIG,yaw_car_host,0,write,1
+12400,EKF,7,SIG,vel_car,0,write,1
+12400,EKF,7,SIG,yaw_rate,0,write,1
+12400,EKF,7,SIG,EKF_fin,0,write,1
+12400,Core3_Core2,0,T,EKF,7,terminate
+12500,periodic_5ms,24,SIG,periodic_5ms_signal,0,write,1
+12500,Core0_compSched,0,T,periodic_5ms,24,terminate
+12500,Planner,7,SIG,fused_objects,0,write,1
+12500,periodic_5ms_Trigger0,25,T,periodic_5ms,25,activate
+12500,Core0_compSched,0,T,periodic_5ms,25,start
+12500,Core1_Core5,0,T,OS_Overhead,0,preempt
+12500,DASM_Trigger0,24,T,DASM,24,activate
+12500,Core1_Core5,0,T,DASM,24,start
+12500,DASM,24,SIG,DASM_trigg,0,read,15
+12500,DASM,24,SIG,speed_objective,0,read,15
+12500,DASM,24,SIG,steer_objective,0,read,15
+12600,DASM,24,SIG,speed_objective,0,write,1
+12600,DASM,24,SIG,steer_objective,0,write,1
+12600,DASM,24,SIG,DASM_fin,0,write,1
+12600,Core1_Core5,0,T,DASM,24,terminate
+12600,Core1_Core5,0,T,OS_Overhead,0,resume
+12900,Planner,7,SIG,speed_objective,0,write,1
+12900,Planner,7,SIG,steer_objective,0,write,1
+12900,Planner,7,SIG,Planner_fin,0,write,1
+12900,Core4_Core0,0,T,Planner,7,terminate
+13000,periodic_5ms,25,SIG,periodic_5ms_signal,0,write,1
+13000,Core0_compSched,0,T,periodic_5ms,25,terminate
+13000,periodic_10ms,12,SIG,periodic_10ms_signal,0,write,1
+13000,Core0_compSched,0,T,periodic_10ms,12,terminate
+13000,periodic_5ms_Trigger0,26,T,periodic_5ms,26,activate
+13000,Core0_compSched,0,T,periodic_5ms,26,start
+13000,periodic_10ms_Trigger0,13,T,periodic_10ms,13,activate
+13000,Core0_compSched,0,T,periodic_10ms,13,start
+13000,Core1_Core5,0,T,OS_Overhead,0,preempt
+13000,CANbus_polling_Trigger0,12,T,CANbus_polling,12,activate
+13000,Core3_Core2,0,T,CANbus_polling,12,start
+13000,CANbus_polling,12,SIG,CANbus_polling_trigg,0,read,15
+13000,DASM_Trigger0,25,T,DASM,25,activate
+13000,Core1_Core5,0,T,DASM,25,start
+13000,DASM,25,SIG,DASM_trigg,0,read,15
+13000,DASM,25,SIG,speed_objective,0,read,15
+13000,DASM,25,SIG,steer_objective,0,read,15
+13100,CANbus_polling,12,SIG,Vehicle_status_host,0,write,1
+13100,CANbus_polling,12,SIG,CANbus_polling_fin,0,write,1
+13100,Core3_Core2,0,T,CANbus_polling,12,terminate
+13100,DASM,25,SIG,speed_objective,0,write,1
+13100,DASM,25,SIG,steer_objective,0,write,1
+13100,DASM,25,SIG,DASM_fin,0,write,1
+13100,Core1_Core5,0,T,DASM,25,terminate
+13100,Core1_Core5,0,T,OS_Overhead,0,resume
+13200,periodic_33ms,3,SIG,periodic_33ms_signal,0,write,1
+13200,Core0_compSched,0,T,periodic_33ms,3,terminate
+13200,periodic_66ms,1,SIG,periodic_66ms_signal,0,write,1
+13200,Core0_compSched,0,T,periodic_66ms,1,terminate
+13200,C3__A2,0,SIG,Camera.transient_failure,0,write,2
+13200,C3__A3b,1,SIG,sd_camera,0,write,2
+13200,Core0_compSched,0,T,C3__A3b,1,terminate
+13200,periodic_33ms_Trigger0,4,T,periodic_33ms,4,activate
+13200,Core0_compSched,0,T,periodic_33ms,4,start
+13200,periodic_66ms_Trigger0,2,T,periodic_66ms,2,activate
+13200,Core0_compSched,0,T,periodic_66ms,2,start
+13200,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,park
+13200,PRE_SFM_gpu_POST_Trigger0,3,T,PRE_SFM_gpu_POST,3,activate
+13200,Core5_Core1,0,T,PRE_SFM_gpu_POST,3,start
+13200,PRE_SFM_gpu_POST,3,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+13200,PRE_SFM_gpu_POST,3,SIG,frame,0,read,15
+13200,Lidar_Grabber_Trigger0,3,T,Lidar_Grabber,3,activate
+13200,Core2_Core4,0,T,Lidar_Grabber,3,start
+13200,Lidar_Grabber,3,SIG,Camera.transient_failure,0,read,2
+13200,Lidar_Grabber,3,SIG,Lidar.permanent_failure,0,read,1
+13200,Lidar_Grabber,3,SIG,Lidar_Grabber_trigg,0,read,15
+13200,Lidar_Grabber,3,SIG,Lidar.transient_failure,0,read,1
+13200,Lidar_Grabber,3,SIG,sd_lidar,0,read,15
+13200,Lidar_Grabber,3,SIG,sd_camera,0,read,15
+13200,C3__A3b_Trigger0,2,T,C3__A3b,2,activate
+13200,Core0_compSched,0,T,C3__A3b,2,start
+13200,C3__A3b,2,SIG,dummy,0,read,15
+13400,PRE_SFM_gpu_POST,3,SIG,SFM_stim_signal,0,write,1
+13400,Core5_Core1,0,T,PRE_SFM_gpu_POST,3,poll
+13400,SFM_Trigger0,3,T,SFM,3,activate
+13400,Core7_GP10B,0,T,SFM,3,start
+13400,SFM,3,SIG,SFM_trigg,0,read,15
+13400,SFM,3,SIG,Matrix_SFM_device,0,read,15
+13400,SFM,3,SIG,IMU_data_host,0,read,15
+13400,SFM,3,SIG,frame,0,read,15
+13500,periodic_5ms,26,SIG,periodic_5ms_signal,0,write,1
+13500,Core0_compSched,0,T,periodic_5ms,26,terminate
+13500,periodic_15ms,8,SIG,periodic_15ms_signal,0,write,1
+13500,Core0_compSched,0,T,periodic_15ms,8,terminate
+13500,SFM,3,SIG,Image_SFM_device,0,write,1
+13500,SFM,3,SIG,IMU_data_device,0,write,1
+13500,periodic_5ms_Trigger0,27,T,periodic_5ms,27,activate
+13500,Core0_compSched,0,T,periodic_5ms,27,start
+13500,periodic_15ms_Trigger0,9,T,periodic_15ms,9,activate
+13500,Core0_compSched,0,T,periodic_15ms,9,start
+13500,Core1_Core5,0,T,OS_Overhead,0,preempt
+13500,EKF_Trigger0,8,T,EKF,8,activate
+13500,Core3_Core2,0,T,EKF,8,start
+13500,EKF,8,SIG,EKF_trigg,0,read,15
+13500,EKF,8,SIG,Vehicle_status_host,0,read,15
+13500,EKF,8,SIG,object_poses,0,read,15
+13500,EKF,8,SIG,yaw_car_host,0,read,15
+13500,EKF,8,SIG,y_car_host,0,read,15
+13500,Planner_Trigger0,8,T,Planner,8,activate
+13500,Core4_Core0,0,T,Planner,8,start
+13500,Planner,8,SIG,Planner_trigg,0,read,15
+13500,Planner,8,SIG,vel_car,0,read,15
+13500,Planner,8,SIG,Lane_boundaries_host,0,read,15
+13500,Planner,8,SIG,Vehicle_status_host,0,read,15
+13500,Planner,8,SIG,Bounding_box_host,0,read,15
+13500,Planner,8,SIG,object_poses,0,read,15
+13500,Planner,8,SIG,lidar_input,0,read,15
+13500,Planner,8,SIG,bounding_boxes,0,read,15
+13500,Planner,8,SIG,yaw_car_host,0,read,15
+13500,Planner,8,SIG,y_car_host,0,read,15
+13500,Planner,8,SIG,fused_objects,0,read,15
+13500,Planner,8,SIG,yaw_rate,0,read,15
+13500,DASM_Trigger0,26,T,DASM,26,activate
+13500,Core1_Core5,0,T,DASM,26,start
+13500,DASM,26,SIG,DASM_trigg,0,read,15
+13500,DASM,26,SIG,speed_objective,0,read,15
+13500,DASM,26,SIG,steer_objective,0,read,15
+13600,DASM,26,SIG,speed_objective,0,write,1
+13600,DASM,26,SIG,steer_objective,0,write,1
+13600,DASM,26,SIG,DASM_fin,0,write,1
+13600,Core1_Core5,0,T,DASM,26,terminate
+13600,Core1_Core5,0,T,OS_Overhead,0,resume
+13700,Lidar_Grabber,3,SIG,lg_mode,0,write,1
+13700,Lidar_Grabber,3,SIG,lidar_output,0,write,1
+13700,Lidar_Grabber,3,SIG,lidar_input,0,write,1
+13800,EKF,8,SIG,object_poses,0,write,1
+13800,EKF,8,SIG,y_car_host,0,write,1
+13800,EKF,8,SIG,yaw_car_host,0,write,1
+13800,EKF,8,SIG,vel_car,0,write,1
+13800,EKF,8,SIG,yaw_rate,0,write,1
+13800,EKF,8,SIG,EKF_fin,0,write,1
+13800,Core3_Core2,0,T,EKF,8,terminate
+14000,periodic_5ms,27,SIG,periodic_5ms_signal,0,write,1
+14000,Core0_compSched,0,T,periodic_5ms,27,terminate
+14000,periodic_10ms,13,SIG,periodic_10ms_signal,0,write,1
+14000,Core0_compSched,0,T,periodic_10ms,13,terminate
+14000,Planner,8,SIG,fused_objects,0,write,1
+14000,periodic_5ms_Trigger0,28,T,periodic_5ms,28,activate
+14000,Core0_compSched,0,T,periodic_5ms,28,start
+14000,periodic_10ms_Trigger0,14,T,periodic_10ms,14,activate
+14000,Core0_compSched,0,T,periodic_10ms,14,start
+14000,Core1_Core5,0,T,OS_Overhead,0,preempt
+14000,CANbus_polling_Trigger0,13,T,CANbus_polling,13,activate
+14000,Core3_Core2,0,T,CANbus_polling,13,start
+14000,CANbus_polling,13,SIG,CANbus_polling_trigg,0,read,15
+14000,DASM_Trigger0,27,T,DASM,27,activate
+14000,Core1_Core5,0,T,DASM,27,start
+14000,DASM,27,SIG,DASM_trigg,0,read,15
+14000,DASM,27,SIG,speed_objective,0,read,15
+14000,DASM,27,SIG,steer_objective,0,read,15
+14100,CANbus_polling,13,SIG,Vehicle_status_host,0,write,1
+14100,CANbus_polling,13,SIG,CANbus_polling_fin,0,write,1
+14100,Core3_Core2,0,T,CANbus_polling,13,terminate
+14100,DASM,27,SIG,speed_objective,0,write,1
+14100,DASM,27,SIG,steer_objective,0,write,1
+14100,DASM,27,SIG,DASM_fin,0,write,1
+14100,Core1_Core5,0,T,DASM,27,terminate
+14100,Core1_Core5,0,T,OS_Overhead,0,resume
+14100,SFM,3,SIG,bounding_boxes,0,write,1
+14100,SFM,3,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+14100,SFM,3,SIG,SFM_fin,0,write,1
+14100,Core7_GP10B,0,T,SFM,3,terminate
+14100,Core5_Core1,0,T,PRE_SFM_gpu_POST,3,run
+14100,PRE_SFM_gpu_POST,3,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+14100,PRE_SFM_gpu_POST,3,SIG,bounding_boxes,0,read,15
+14200,PRE_SFM_gpu_POST,3,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+14200,Lidar_Grabber,3,SIG,cg_mode,0,write,2
+14200,Lidar_Grabber,3,SIG,Lidar_Grabber_fin,0,write,1
+14200,Core2_Core4,0,T,Lidar_Grabber,3,terminate
+14300,PRE_SFM_gpu_POST,3,SIG,bounding_boxes,0,write,1
+14300,PRE_SFM_gpu_POST,3,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+14300,Core5_Core1,0,T,PRE_SFM_gpu_POST,3,terminate
+14300,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,poll_parking
+14400,Planner,8,SIG,speed_objective,0,write,1
+14400,Planner,8,SIG,steer_objective,0,write,1
+14400,Planner,8,SIG,Planner_fin,0,write,1
+14400,Core4_Core0,0,T,Planner,8,terminate
+14500,periodic_5ms,28,SIG,periodic_5ms_signal,0,write,1
+14500,Core0_compSched,0,T,periodic_5ms,28,terminate
+14500,periodic_5ms_Trigger0,29,T,periodic_5ms,29,activate
+14500,Core0_compSched,0,T,periodic_5ms,29,start
+14500,Core1_Core5,0,T,OS_Overhead,0,preempt
+14500,DASM_Trigger0,28,T,DASM,28,activate
+14500,Core1_Core5,0,T,DASM,28,start
+14500,DASM,28,SIG,DASM_trigg,0,read,15
+14500,DASM,28,SIG,speed_objective,0,read,15
+14500,DASM,28,SIG,steer_objective,0,read,15
+14600,DASM,28,SIG,speed_objective,0,write,1
+14600,DASM,28,SIG,steer_objective,0,write,1
+14600,DASM,28,SIG,DASM_fin,0,write,1
+14600,Core1_Core5,0,T,DASM,28,terminate
+14600,Core1_Core5,0,T,OS_Overhead,0,resume
+15000,periodic_5ms,29,SIG,periodic_5ms_signal,0,write,1
+15000,Core0_compSched,0,T,periodic_5ms,29,terminate
+15000,periodic_15ms,9,SIG,periodic_15ms_signal,0,write,1
+15000,Core0_compSched,0,T,periodic_15ms,9,terminate
+15000,periodic_10ms,14,SIG,periodic_10ms_signal,0,write,1
+15000,Core0_compSched,0,T,periodic_10ms,14,terminate
+15000,periodic_5ms_Trigger0,30,T,periodic_5ms,30,activate
+15000,Core0_compSched,0,T,periodic_5ms,30,start
+15000,periodic_15ms_Trigger0,10,T,periodic_15ms,10,activate
+15000,Core0_compSched,0,T,periodic_15ms,10,start
+15000,periodic_10ms_Trigger0,15,T,periodic_10ms,15,activate
+15000,Core0_compSched,0,T,periodic_10ms,15,start
+15000,Core1_Core5,0,T,OS_Overhead,0,preempt
+15000,CANbus_polling_Trigger0,14,T,CANbus_polling,14,activate
+15000,Core3_Core2,0,T,CANbus_polling,14,start
+15000,CANbus_polling,14,SIG,CANbus_polling_trigg,0,read,15
+15000,EKF_Trigger0,9,T,EKF,9,activate
+15000,Planner_Trigger0,9,T,Planner,9,activate
+15000,Core4_Core0,0,T,Planner,9,start
+15000,Planner,9,SIG,Planner_trigg,0,read,15
+15000,Planner,9,SIG,vel_car,0,read,15
+15000,Planner,9,SIG,Lane_boundaries_host,0,read,15
+15000,Planner,9,SIG,Vehicle_status_host,0,read,15
+15000,Planner,9,SIG,Bounding_box_host,0,read,15
+15000,Planner,9,SIG,object_poses,0,read,15
+15000,Planner,9,SIG,lidar_input,0,read,15
+15000,Planner,9,SIG,bounding_boxes,0,read,15
+15000,Planner,9,SIG,yaw_car_host,0,read,15
+15000,Planner,9,SIG,y_car_host,0,read,15
+15000,Planner,9,SIG,fused_objects,0,read,15
+15000,Planner,9,SIG,yaw_rate,0,read,15
+15000,DASM_Trigger0,29,T,DASM,29,activate
+15000,Core1_Core5,0,T,DASM,29,start
+15000,DASM,29,SIG,DASM_trigg,0,read,15
+15000,DASM,29,SIG,speed_objective,0,read,15
+15000,DASM,29,SIG,steer_objective,0,read,15
+15100,CANbus_polling,14,SIG,Vehicle_status_host,0,write,1
+15100,CANbus_polling,14,SIG,CANbus_polling_fin,0,write,1
+15100,Core3_Core2,0,T,CANbus_polling,14,terminate
+15100,DASM,29,SIG,speed_objective,0,write,1
+15100,DASM,29,SIG,steer_objective,0,write,1
+15100,DASM,29,SIG,DASM_fin,0,write,1
+15100,Core1_Core5,0,T,DASM,29,terminate
+15100,Core1_Core5,0,T,OS_Overhead,0,resume
+15100,Core3_Core2,0,T,EKF,9,start
+15100,EKF,9,SIG,EKF_trigg,0,read,15
+15100,EKF,9,SIG,Vehicle_status_host,0,read,15
+15100,EKF,9,SIG,object_poses,0,read,15
+15100,EKF,9,SIG,yaw_car_host,0,read,15
+15100,EKF,9,SIG,y_car_host,0,read,15
+15400,EKF,9,SIG,object_poses,0,write,1
+15400,EKF,9,SIG,y_car_host,0,write,1
+15400,EKF,9,SIG,yaw_car_host,0,write,1
+15400,EKF,9,SIG,vel_car,0,write,1
+15400,EKF,9,SIG,yaw_rate,0,write,1
+15400,EKF,9,SIG,EKF_fin,0,write,1
+15400,Core3_Core2,0,T,EKF,9,terminate
+15500,periodic_5ms,30,SIG,periodic_5ms_signal,0,write,1
+15500,Core0_compSched,0,T,periodic_5ms,30,terminate
+15500,Planner,9,SIG,fused_objects,0,write,1
+15500,periodic_5ms_Trigger0,31,T,periodic_5ms,31,activate
+15500,Core0_compSched,0,T,periodic_5ms,31,start
+15500,Core1_Core5,0,T,OS_Overhead,0,preempt
+15500,DASM_Trigger0,30,T,DASM,30,activate
+15500,Core1_Core5,0,T,DASM,30,start
+15500,DASM,30,SIG,DASM_trigg,0,read,15
+15500,DASM,30,SIG,speed_objective,0,read,15
+15500,DASM,30,SIG,steer_objective,0,read,15
+15600,DASM,30,SIG,speed_objective,0,write,1
+15600,DASM,30,SIG,steer_objective,0,write,1
+15600,DASM,30,SIG,DASM_fin,0,write,1
+15600,Core1_Core5,0,T,DASM,30,terminate
+15600,Core1_Core5,0,T,OS_Overhead,0,resume
+15900,Planner,9,SIG,speed_objective,0,write,1
+15900,Planner,9,SIG,steer_objective,0,write,1
+15900,Planner,9,SIG,Planner_fin,0,write,1
+15900,Core4_Core0,0,T,Planner,9,terminate
+16000,periodic_5ms,31,SIG,periodic_5ms_signal,0,write,1
+16000,Core0_compSched,0,T,periodic_5ms,31,terminate
+16000,periodic_10ms,15,SIG,periodic_10ms_signal,0,write,1
+16000,Core0_compSched,0,T,periodic_10ms,15,terminate
+16000,periodic_5ms_Trigger0,32,T,periodic_5ms,32,activate
+16000,Core0_compSched,0,T,periodic_5ms,32,start
+16000,periodic_10ms_Trigger0,16,T,periodic_10ms,16,activate
+16000,Core0_compSched,0,T,periodic_10ms,16,start
+16000,Core1_Core5,0,T,OS_Overhead,0,preempt
+16000,CANbus_polling_Trigger0,15,T,CANbus_polling,15,activate
+16000,Core3_Core2,0,T,CANbus_polling,15,start
+16000,CANbus_polling,15,SIG,CANbus_polling_trigg,0,read,15
+16000,DASM_Trigger0,31,T,DASM,31,activate
+16000,Core1_Core5,0,T,DASM,31,start
+16000,DASM,31,SIG,DASM_trigg,0,read,15
+16000,DASM,31,SIG,speed_objective,0,read,15
+16000,DASM,31,SIG,steer_objective,0,read,15
+16100,CANbus_polling,15,SIG,Vehicle_status_host,0,write,1
+16100,CANbus_polling,15,SIG,CANbus_polling_fin,0,write,1
+16100,Core3_Core2,0,T,CANbus_polling,15,terminate
+16100,DASM,31,SIG,speed_objective,0,write,1
+16100,DASM,31,SIG,steer_objective,0,write,1
+16100,DASM,31,SIG,DASM_fin,0,write,1
+16100,Core1_Core5,0,T,DASM,31,terminate
+16100,Core1_Core5,0,T,OS_Overhead,0,resume
+16300,OS_Overhead,0,SIG,OS_Overhead_fin,0,write,1
+16300,Core1_Core5,0,T,OS_Overhead,0,terminate
+16500,periodic_33ms,4,SIG,periodic_33ms_signal,0,write,1
+16500,Core0_compSched,0,T,periodic_33ms,4,terminate
+16500,periodic_5ms,32,SIG,periodic_5ms_signal,0,write,1
+16500,Core0_compSched,0,T,periodic_5ms,32,terminate
+16500,periodic_15ms,10,SIG,periodic_15ms_signal,0,write,1
+16500,Core0_compSched,0,T,periodic_15ms,10,terminate
+16500,periodic_33ms_Trigger0,5,T,periodic_33ms,5,activate
+16500,Core0_compSched,0,T,periodic_33ms,5,start
+16500,periodic_5ms_Trigger0,33,T,periodic_5ms,33,activate
+16500,Core0_compSched,0,T,periodic_5ms,33,start
+16500,periodic_15ms_Trigger0,11,T,periodic_15ms,11,activate
+16500,Core0_compSched,0,T,periodic_15ms,11,start
+16500,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,park
+16500,PRE_SFM_gpu_POST_Trigger0,4,T,PRE_SFM_gpu_POST,4,activate
+16500,Core5_Core1,0,T,PRE_SFM_gpu_POST,4,start
+16500,PRE_SFM_gpu_POST,4,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+16500,PRE_SFM_gpu_POST,4,SIG,frame,0,read,15
+16500,Lidar_Grabber_Trigger0,4,T,Lidar_Grabber,4,activate
+16500,Core2_Core4,0,T,Lidar_Grabber,4,start
+16500,Lidar_Grabber,4,SIG,Lidar_Grabber_trigg,0,read,15
+16500,Lidar_Grabber,4,SIG,Lidar.transient_failure,0,read,2
+16500,Lidar_Grabber,4,SIG,Camera.permanent_failure,0,read,2
+16500,Lidar_Grabber,4,SIG,sd_lidar,0,read,1
+16500,Lidar_Grabber,4,SIG,sd_camera,0,read,1
+16500,EKF_Trigger0,10,T,EKF,10,activate
+16500,Core3_Core2,0,T,EKF,10,start
+16500,EKF,10,SIG,EKF_trigg,0,read,15
+16500,EKF,10,SIG,Vehicle_status_host,0,read,15
+16500,EKF,10,SIG,object_poses,0,read,15
+16500,EKF,10,SIG,yaw_car_host,0,read,15
+16500,EKF,10,SIG,y_car_host,0,read,15
+16500,Planner_Trigger0,10,T,Planner,10,activate
+16500,Core4_Core0,0,T,Planner,10,start
+16500,Planner,10,SIG,Planner_trigg,0,read,15
+16500,Planner,10,SIG,vel_car,0,read,15
+16500,Planner,10,SIG,Lane_boundaries_host,0,read,15
+16500,Planner,10,SIG,Vehicle_status_host,0,read,15
+16500,Planner,10,SIG,Bounding_box_host,0,read,15
+16500,Planner,10,SIG,object_poses,0,read,15
+16500,Planner,10,SIG,lidar_input,0,read,15
+16500,Planner,10,SIG,bounding_boxes,0,read,15
+16500,Planner,10,SIG,yaw_car_host,0,read,15
+16500,Planner,10,SIG,y_car_host,0,read,15
+16500,Planner,10,SIG,fused_objects,0,read,15
+16500,Planner,10,SIG,yaw_rate,0,read,15
+16500,DASM_Trigger0,32,T,DASM,32,activate
+16500,Core1_Core5,0,T,DASM,32,start
+16500,DASM,32,SIG,DASM_trigg,0,read,15
+16500,DASM,32,SIG,speed_objective,0,read,15
+16500,DASM,32,SIG,steer_objective,0,read,15
+16600,DASM,32,SIG,speed_objective,0,write,1
+16600,DASM,32,SIG,steer_objective,0,write,1
+16600,DASM,32,SIG,DASM_fin,0,write,1
+16600,Core1_Core5,0,T,DASM,32,terminate
+16700,PRE_SFM_gpu_POST,4,SIG,SFM_stim_signal,0,write,1
+16700,Core5_Core1,0,T,PRE_SFM_gpu_POST,4,poll
+16700,SFM_Trigger0,4,T,SFM,4,activate
+16700,Core7_GP10B,0,T,SFM,4,start
+16700,SFM,4,SIG,SFM_trigg,0,read,15
+16700,SFM,4,SIG,Matrix_SFM_device,0,read,15
+16700,SFM,4,SIG,IMU_data_host,0,read,15
+16700,SFM,4,SIG,frame,0,read,15
+16800,EKF,10,SIG,object_poses,0,write,1
+16800,EKF,10,SIG,y_car_host,0,write,1
+16800,EKF,10,SIG,yaw_car_host,0,write,1
+16800,EKF,10,SIG,vel_car,0,write,1
+16800,EKF,10,SIG,yaw_rate,0,write,1
+16800,EKF,10,SIG,EKF_fin,0,write,1
+16800,Core3_Core2,0,T,EKF,10,terminate
+16800,SFM,4,SIG,Image_SFM_device,0,write,1
+16800,SFM,4,SIG,IMU_data_device,0,write,1
+17000,periodic_5ms,33,SIG,periodic_5ms_signal,0,write,1
+17000,Core0_compSched,0,T,periodic_5ms,33,terminate
+17000,periodic_10ms,16,SIG,periodic_10ms_signal,0,write,1
+17000,Core0_compSched,0,T,periodic_10ms,16,terminate
+17000,Lidar_Grabber,4,SIG,lg_mode,0,write,2
+17000,Planner,10,SIG,fused_objects,0,write,1
+17000,periodic_5ms_Trigger0,34,T,periodic_5ms,34,activate
+17000,Core0_compSched,0,T,periodic_5ms,34,start
+17000,periodic_10ms_Trigger0,17,T,periodic_10ms,17,activate
+17000,Core0_compSched,0,T,periodic_10ms,17,start
+17000,CANbus_polling_Trigger0,16,T,CANbus_polling,16,activate
+17000,Core3_Core2,0,T,CANbus_polling,16,start
+17000,CANbus_polling,16,SIG,CANbus_polling_trigg,0,read,15
+17000,DASM_Trigger0,33,T,DASM,33,activate
+17000,Core1_Core5,0,T,DASM,33,start
+17000,DASM,33,SIG,DASM_trigg,0,read,15
+17000,DASM,33,SIG,speed_objective,0,read,15
+17000,DASM,33,SIG,steer_objective,0,read,15
+17100,CANbus_polling,16,SIG,Vehicle_status_host,0,write,1
+17100,CANbus_polling,16,SIG,CANbus_polling_fin,0,write,1
+17100,Core3_Core2,0,T,CANbus_polling,16,terminate
+17100,DASM,33,SIG,speed_objective,0,write,1
+17100,DASM,33,SIG,steer_objective,0,write,1
+17100,DASM,33,SIG,DASM_fin,0,write,1
+17100,Core1_Core5,0,T,DASM,33,terminate
+17400,Planner,10,SIG,speed_objective,0,write,1
+17400,Planner,10,SIG,steer_objective,0,write,1
+17400,Planner,10,SIG,Planner_fin,0,write,1
+17400,Core4_Core0,0,T,Planner,10,terminate
+17400,SFM,4,SIG,bounding_boxes,0,write,1
+17400,SFM,4,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+17400,SFM,4,SIG,SFM_fin,0,write,1
+17400,Core7_GP10B,0,T,SFM,4,terminate
+17400,Core5_Core1,0,T,PRE_SFM_gpu_POST,4,run
+17400,PRE_SFM_gpu_POST,4,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+17400,PRE_SFM_gpu_POST,4,SIG,bounding_boxes,0,read,15
+17500,periodic_5ms,34,SIG,periodic_5ms_signal,0,write,1
+17500,Core0_compSched,0,T,periodic_5ms,34,terminate
+17500,PRE_SFM_gpu_POST,4,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+17500,Lidar_Grabber,4,SIG,cg_mode,0,write,2
+17500,Lidar_Grabber,4,SIG,Lidar_Grabber_fin,0,write,1
+17500,Core2_Core4,0,T,Lidar_Grabber,4,terminate
+17500,periodic_5ms_Trigger0,35,T,periodic_5ms,35,activate
+17500,Core0_compSched,0,T,periodic_5ms,35,start
+17500,DASM_Trigger0,34,T,DASM,34,activate
+17500,Core1_Core5,0,T,DASM,34,start
+17500,DASM,34,SIG,DASM_trigg,0,read,15
+17500,DASM,34,SIG,speed_objective,0,read,15
+17500,DASM,34,SIG,steer_objective,0,read,15
+17600,PRE_SFM_gpu_POST,4,SIG,bounding_boxes,0,write,1
+17600,PRE_SFM_gpu_POST,4,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+17600,Core5_Core1,0,T,PRE_SFM_gpu_POST,4,terminate
+17600,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,poll_parking
+17600,DASM,34,SIG,speed_objective,0,write,1
+17600,DASM,34,SIG,steer_objective,0,write,1
+17600,DASM,34,SIG,DASM_fin,0,write,1
+17600,Core1_Core5,0,T,DASM,34,terminate
+18000,periodic_5ms,35,SIG,periodic_5ms_signal,0,write,1
+18000,Core0_compSched,0,T,periodic_5ms,35,terminate
+18000,periodic_15ms,11,SIG,periodic_15ms_signal,0,write,1
+18000,Core0_compSched,0,T,periodic_15ms,11,terminate
+18000,periodic_10ms,17,SIG,periodic_10ms_signal,0,write,1
+18000,Core0_compSched,0,T,periodic_10ms,17,terminate
+18000,periodic_5ms_Trigger0,36,T,periodic_5ms,36,activate
+18000,Core0_compSched,0,T,periodic_5ms,36,start
+18000,periodic_15ms_Trigger0,12,T,periodic_15ms,12,activate
+18000,Core0_compSched,0,T,periodic_15ms,12,start
+18000,periodic_10ms_Trigger0,18,T,periodic_10ms,18,activate
+18000,Core0_compSched,0,T,periodic_10ms,18,start
+18000,CANbus_polling_Trigger0,17,T,CANbus_polling,17,activate
+18000,Core3_Core2,0,T,CANbus_polling,17,start
+18000,CANbus_polling,17,SIG,CANbus_polling_trigg,0,read,15
+18000,EKF_Trigger0,11,T,EKF,11,activate
+18000,Planner_Trigger0,11,T,Planner,11,activate
+18000,Core4_Core0,0,T,Planner,11,start
+18000,Planner,11,SIG,Planner_trigg,0,read,15
+18000,Planner,11,SIG,vel_car,0,read,15
+18000,Planner,11,SIG,Lane_boundaries_host,0,read,15
+18000,Planner,11,SIG,Vehicle_status_host,0,read,15
+18000,Planner,11,SIG,Bounding_box_host,0,read,15
+18000,Planner,11,SIG,object_poses,0,read,15
+18000,Planner,11,SIG,lidar_input,0,read,15
+18000,Planner,11,SIG,bounding_boxes,0,read,15
+18000,Planner,11,SIG,yaw_car_host,0,read,15
+18000,Planner,11,SIG,y_car_host,0,read,15
+18000,Planner,11,SIG,fused_objects,0,read,15
+18000,Planner,11,SIG,yaw_rate,0,read,15
+18000,DASM_Trigger0,35,T,DASM,35,activate
+18000,Core1_Core5,0,T,DASM,35,start
+18000,DASM,35,SIG,DASM_trigg,0,read,15
+18000,DASM,35,SIG,speed_objective,0,read,15
+18000,DASM,35,SIG,steer_objective,0,read,15
+18100,CANbus_polling,17,SIG,Vehicle_status_host,0,write,1
+18100,CANbus_polling,17,SIG,CANbus_polling_fin,0,write,1
+18100,Core3_Core2,0,T,CANbus_polling,17,terminate
+18100,DASM,35,SIG,speed_objective,0,write,1
+18100,DASM,35,SIG,steer_objective,0,write,1
+18100,DASM,35,SIG,DASM_fin,0,write,1
+18100,Core1_Core5,0,T,DASM,35,terminate
+18100,Core3_Core2,0,T,EKF,11,start
+18100,EKF,11,SIG,EKF_trigg,0,read,15
+18100,EKF,11,SIG,Vehicle_status_host,0,read,15
+18100,EKF,11,SIG,object_poses,0,read,15
+18100,EKF,11,SIG,yaw_car_host,0,read,15
+18100,EKF,11,SIG,y_car_host,0,read,15
+18400,EKF,11,SIG,object_poses,0,write,1
+18400,EKF,11,SIG,y_car_host,0,write,1
+18400,EKF,11,SIG,yaw_car_host,0,write,1
+18400,EKF,11,SIG,vel_car,0,write,1
+18400,EKF,11,SIG,yaw_rate,0,write,1
+18400,EKF,11,SIG,EKF_fin,0,write,1
+18400,Core3_Core2,0,T,EKF,11,terminate
+18500,periodic_5ms,36,SIG,periodic_5ms_signal,0,write,1
+18500,Core0_compSched,0,T,periodic_5ms,36,terminate
+18500,Planner,11,SIG,fused_objects,0,write,1
+18500,periodic_5ms_Trigger0,37,T,periodic_5ms,37,activate
+18500,Core0_compSched,0,T,periodic_5ms,37,start
+18500,DASM_Trigger0,36,T,DASM,36,activate
+18500,Core1_Core5,0,T,DASM,36,start
+18500,DASM,36,SIG,DASM_trigg,0,read,15
+18500,DASM,36,SIG,speed_objective,0,read,15
+18500,DASM,36,SIG,steer_objective,0,read,15
+18600,DASM,36,SIG,speed_objective,0,write,1
+18600,DASM,36,SIG,steer_objective,0,write,1
+18600,DASM,36,SIG,DASM_fin,0,write,1
+18600,Core1_Core5,0,T,DASM,36,terminate
+18900,Planner,11,SIG,speed_objective,0,write,1
+18900,Planner,11,SIG,steer_objective,0,write,1
+18900,Planner,11,SIG,Planner_fin,0,write,1
+18900,Core4_Core0,0,T,Planner,11,terminate
+19000,periodic_5ms,37,SIG,periodic_5ms_signal,0,write,1
+19000,Core0_compSched,0,T,periodic_5ms,37,terminate
+19000,periodic_10ms,18,SIG,periodic_10ms_signal,0,write,1
+19000,Core0_compSched,0,T,periodic_10ms,18,terminate
+19000,periodic_5ms_Trigger0,38,T,periodic_5ms,38,activate
+19000,Core0_compSched,0,T,periodic_5ms,38,start
+19000,periodic_10ms_Trigger0,19,T,periodic_10ms,19,activate
+19000,Core0_compSched,0,T,periodic_10ms,19,start
+19000,CANbus_polling_Trigger0,18,T,CANbus_polling,18,activate
+19000,Core3_Core2,0,T,CANbus_polling,18,start
+19000,CANbus_polling,18,SIG,CANbus_polling_trigg,0,read,15
+19000,DASM_Trigger0,37,T,DASM,37,activate
+19000,Core1_Core5,0,T,DASM,37,start
+19000,DASM,37,SIG,DASM_trigg,0,read,15
+19000,DASM,37,SIG,speed_objective,0,read,15
+19000,DASM,37,SIG,steer_objective,0,read,15
+19100,CANbus_polling,18,SIG,Vehicle_status_host,0,write,1
+19100,CANbus_polling,18,SIG,CANbus_polling_fin,0,write,1
+19100,Core3_Core2,0,T,CANbus_polling,18,terminate
+19100,DASM,37,SIG,speed_objective,0,write,1
+19100,DASM,37,SIG,steer_objective,0,write,1
+19100,DASM,37,SIG,DASM_fin,0,write,1
+19100,Core1_Core5,0,T,DASM,37,terminate
+19500,periodic_5ms,38,SIG,periodic_5ms_signal,0,write,1
+19500,Core0_compSched,0,T,periodic_5ms,38,terminate
+19500,periodic_15ms,12,SIG,periodic_15ms_signal,0,write,1
+19500,Core0_compSched,0,T,periodic_15ms,12,terminate
+19500,periodic_5ms_Trigger0,39,T,periodic_5ms,39,activate
+19500,Core0_compSched,0,T,periodic_5ms,39,start
+19500,periodic_15ms_Trigger0,13,T,periodic_15ms,13,activate
+19500,Core0_compSched,0,T,periodic_15ms,13,start
+19500,EKF_Trigger0,12,T,EKF,12,activate
+19500,Core3_Core2,0,T,EKF,12,start
+19500,EKF,12,SIG,EKF_trigg,0,read,15
+19500,EKF,12,SIG,Vehicle_status_host,0,read,15
+19500,EKF,12,SIG,object_poses,0,read,15
+19500,EKF,12,SIG,yaw_car_host,0,read,15
+19500,EKF,12,SIG,y_car_host,0,read,15
+19500,Planner_Trigger0,12,T,Planner,12,activate
+19500,Core4_Core0,0,T,Planner,12,start
+19500,Planner,12,SIG,Planner_trigg,0,read,15
+19500,Planner,12,SIG,vel_car,0,read,15
+19500,Planner,12,SIG,Lane_boundaries_host,0,read,15
+19500,Planner,12,SIG,Vehicle_status_host,0,read,15
+19500,Planner,12,SIG,Bounding_box_host,0,read,15
+19500,Planner,12,SIG,object_poses,0,read,15
+19500,Planner,12,SIG,lidar_input,0,read,15
+19500,Planner,12,SIG,bounding_boxes,0,read,15
+19500,Planner,12,SIG,yaw_car_host,0,read,15
+19500,Planner,12,SIG,y_car_host,0,read,15
+19500,Planner,12,SIG,fused_objects,0,read,15
+19500,Planner,12,SIG,yaw_rate,0,read,15
+19500,DASM_Trigger0,38,T,DASM,38,activate
+19500,Core1_Core5,0,T,DASM,38,start
+19500,DASM,38,SIG,DASM_trigg,0,read,15
+19500,DASM,38,SIG,speed_objective,0,read,15
+19500,DASM,38,SIG,steer_objective,0,read,15
+19600,DASM,38,SIG,speed_objective,0,write,1
+19600,DASM,38,SIG,steer_objective,0,write,1
+19600,DASM,38,SIG,DASM_fin,0,write,1
+19600,Core1_Core5,0,T,DASM,38,terminate
+19800,periodic_33ms,5,SIG,periodic_33ms_signal,0,write,1
+19800,Core0_compSched,0,T,periodic_33ms,5,terminate
+19800,periodic_66ms,2,SIG,periodic_66ms_signal,0,write,1
+19800,Core0_compSched,0,T,periodic_66ms,2,terminate
+19800,EKF,12,SIG,object_poses,0,write,1
+19800,EKF,12,SIG,y_car_host,0,write,1
+19800,EKF,12,SIG,yaw_car_host,0,write,1
+19800,EKF,12,SIG,vel_car,0,write,1
+19800,EKF,12,SIG,yaw_rate,0,write,1
+19800,EKF,12,SIG,EKF_fin,0,write,1
+19800,Core3_Core2,0,T,EKF,12,terminate
+19800,C3__A2,0,SIG,Camera.transient_failure,0,write,1
+19800,Core0_compSched,0,T,C3__A2,0,terminate
+19800,C3__A3b,2,SIG,sd_camera,0,write,2
+19800,Core0_compSched,0,T,C3__A3b,2,terminate
+19800,periodic_33ms_Trigger0,6,T,periodic_33ms,6,activate
+19800,Core0_compSched,0,T,periodic_33ms,6,start
+19800,periodic_66ms_Trigger0,3,T,periodic_66ms,3,activate
+19800,Core0_compSched,0,T,periodic_66ms,3,start
+19800,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,park
+19800,PRE_SFM_gpu_POST_Trigger0,5,T,PRE_SFM_gpu_POST,5,activate
+19800,Core5_Core1,0,T,PRE_SFM_gpu_POST,5,start
+19800,PRE_SFM_gpu_POST,5,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+19800,PRE_SFM_gpu_POST,5,SIG,frame,0,read,15
+19800,Lidar_Grabber_Trigger0,5,T,Lidar_Grabber,5,activate
+19800,Core2_Core4,0,T,Lidar_Grabber,5,start
+19800,Lidar_Grabber,5,SIG,Camera.transient_failure,0,read,1
+19800,Lidar_Grabber,5,SIG,Camera.permanent_failure,0,read,1
+19800,Lidar_Grabber,5,SIG,Lidar.permanent_failure,0,read,1
+19800,Lidar_Grabber,5,SIG,Lidar_Grabber_trigg,0,read,15
+19800,Lidar_Grabber,5,SIG,Lidar.transient_failure,0,read,1
+19800,Lidar_Grabber,5,SIG,sd_lidar,0,read,15
+19800,Lidar_Grabber,5,SIG,sd_camera,0,read,15
+19800,C3__A2_Trigger1,1,T,C3__A2,1,activate
+19800,Core0_compSched,0,T,C3__A2,1,start
+19800,C3__A2,1,SIG,Camera.transient_failure,0,read,15
+19800,C3__A3b_Trigger0,3,T,C3__A3b,3,activate
+19800,Core0_compSched,0,T,C3__A3b,3,start
+19800,C3__A3b,3,SIG,dummy,0,read,15
+20000,periodic_100ms,1,SIG,periodic_100ms_signal,0,write,1
+20000,Core0_compSched,0,T,periodic_100ms,1,terminate
+20000,periodic_5ms,39,SIG,periodic_5ms_signal,0,write,1
+20000,Core0_compSched,0,T,periodic_5ms,39,terminate
+20000,periodic_200ms,0,SIG,periodic_200ms_signal,0,write,1
+20000,Core0_compSched,0,T,periodic_200ms,0,terminate
+20000,periodic_10ms,19,SIG,periodic_10ms_signal,0,write,1
+20000,Core0_compSched,0,T,periodic_10ms,19,terminate
+20000,PRE_SFM_gpu_POST,5,SIG,SFM_stim_signal,0,write,1
+20000,Core5_Core1,0,T,PRE_SFM_gpu_POST,5,poll
+20000,Planner,12,SIG,fused_objects,0,write,1
+20000,periodic_100ms_Trigger0,2,T,periodic_100ms,2,activate
+20000,Core0_compSched,0,T,periodic_100ms,2,start
+20000,periodic_5ms_Trigger0,40,T,periodic_5ms,40,activate
+20000,Core0_compSched,0,T,periodic_5ms,40,start
+20000,periodic_200ms_Trigger0,1,T,periodic_200ms,1,activate
+20000,Core0_compSched,0,T,periodic_200ms,1,start
+20000,periodic_10ms_Trigger0,20,T,periodic_10ms,20,activate
+20000,Core0_compSched,0,T,periodic_10ms,20,start
+20000,OS_Overhead_Trigger0,1,T,OS_Overhead,1,activate
+20000,PRE_Detection_gpu_POST_Trigger0,0,T,PRE_Detection_gpu_POST,0,activate
+20000,CANbus_polling_Trigger0,19,T,CANbus_polling,19,activate
+20000,Core3_Core2,0,T,CANbus_polling,19,start
+20000,CANbus_polling,19,SIG,CANbus_polling_trigg,0,read,15
+20000,DASM_Trigger0,39,T,DASM,39,activate
+20000,Core1_Core5,0,T,DASM,39,start
+20000,DASM,39,SIG,DASM_trigg,0,read,15
+20000,DASM,39,SIG,speed_objective,0,read,15
+20000,DASM,39,SIG,steer_objective,0,read,15
+20000,SFM_Trigger0,5,T,SFM,5,activate
+20000,Core7_GP10B,0,T,SFM,5,start
+20000,SFM,5,SIG,SFM_trigg,0,read,15
+20000,SFM,5,SIG,Matrix_SFM_device,0,read,15
+20000,SFM,5,SIG,IMU_data_host,0,read,15
+20000,SFM,5,SIG,frame,0,read,15
+20100,CANbus_polling,19,SIG,Vehicle_status_host,0,write,1
+20100,CANbus_polling,19,SIG,CANbus_polling_fin,0,write,1
+20100,Core3_Core2,0,T,CANbus_polling,19,terminate
+20100,DASM,39,SIG,speed_objective,0,write,1
+20100,DASM,39,SIG,steer_objective,0,write,1
+20100,DASM,39,SIG,DASM_fin,0,write,1
+20100,Core1_Core5,0,T,DASM,39,terminate
+20100,SFM,5,SIG,Image_SFM_device,0,write,1
+20100,SFM,5,SIG,IMU_data_device,0,write,1
+20100,Core1_Core5,0,T,OS_Overhead,1,start
+20100,OS_Overhead,1,SIG,OS_Overhead_trigg,0,read,15
+20300,Lidar_Grabber,5,SIG,lg_mode,0,write,1
+20300,Lidar_Grabber,5,SIG,lidar_output,0,write,1
+20300,Lidar_Grabber,5,SIG,lidar_input,0,write,1
+20400,Planner,12,SIG,speed_objective,0,write,1
+20400,Planner,12,SIG,steer_objective,0,write,1
+20400,Planner,12,SIG,Planner_fin,0,write,1
+20400,Core4_Core0,0,T,Planner,12,terminate
+20500,periodic_5ms,40,SIG,periodic_5ms_signal,0,write,1
+20500,Core0_compSched,0,T,periodic_5ms,40,terminate
+20500,periodic_5ms_Trigger0,41,T,periodic_5ms,41,activate
+20500,Core0_compSched,0,T,periodic_5ms,41,start
+20500,Core1_Core5,0,T,OS_Overhead,1,preempt
+20500,DASM_Trigger0,40,T,DASM,40,activate
+20500,Core1_Core5,0,T,DASM,40,start
+20500,DASM,40,SIG,DASM_trigg,0,read,15
+20500,DASM,40,SIG,speed_objective,0,read,15
+20500,DASM,40,SIG,steer_objective,0,read,15
+20600,DASM,40,SIG,speed_objective,0,write,1
+20600,DASM,40,SIG,steer_objective,0,write,1
+20600,DASM,40,SIG,DASM_fin,0,write,1
+20600,Core1_Core5,0,T,DASM,40,terminate
+20600,Core1_Core5,0,T,OS_Overhead,1,resume
+20700,SFM,5,SIG,bounding_boxes,0,write,1
+20700,SFM,5,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+20700,SFM,5,SIG,SFM_fin,0,write,1
+20700,Core7_GP10B,0,T,SFM,5,terminate
+20700,Core5_Core1,0,T,PRE_SFM_gpu_POST,5,run
+20700,PRE_SFM_gpu_POST,5,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+20700,PRE_SFM_gpu_POST,5,SIG,bounding_boxes,0,read,15
+20800,PRE_SFM_gpu_POST,5,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+20900,Lidar_Grabber,5,SIG,cg_mode,0,write,1
+20900,Lidar_Grabber,5,SIG,Image_host,0,write,1
+20900,Lidar_Grabber,5,SIG,frame,0,write,2
+20900,Lidar_Grabber,5,SIG,Image_lane_lines_host,0,write,1
+20900,Lidar_Grabber,5,SIG,Lidar_Grabber_fin,0,write,1
+20900,Core2_Core4,0,T,Lidar_Grabber,5,terminate
+20900,Core2_Core4,0,T,PRE_Detection_gpu_POST,0,start
+20900,PRE_Detection_gpu_POST,0,SIG,PRE_Detection_gpu_POST_trigg,0,read,15
+20900,PRE_Detection_gpu_POST,0,SIG,Image_host,0,read,15
+20900,PRE_SFM_gpu_POST,5,SIG,bounding_boxes,0,write,1
+20900,PRE_SFM_gpu_POST,5,SIG,PRE_SFM_gpu_POST_fin,0,write,1
+20900,Core5_Core1,0,T,PRE_SFM_gpu_POST,5,terminate
+20900,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,poll_parking
+21000,periodic_5ms,41,SIG,periodic_5ms_signal,0,write,1
+21000,Core0_compSched,0,T,periodic_5ms,41,terminate
+21000,periodic_15ms,13,SIG,periodic_15ms_signal,0,write,1
+21000,Core0_compSched,0,T,periodic_15ms,13,terminate
+21000,periodic_10ms,20,SIG,periodic_10ms_signal,0,write,1
+21000,Core0_compSched,0,T,periodic_10ms,20,terminate
+21000,periodic_5ms_Trigger0,42,T,periodic_5ms,42,activate
+21000,Core0_compSched,0,T,periodic_5ms,42,start
+21000,periodic_15ms_Trigger0,14,T,periodic_15ms,14,activate
+21000,Core0_compSched,0,T,periodic_15ms,14,start
+21000,periodic_10ms_Trigger0,21,T,periodic_10ms,21,activate
+21000,Core0_compSched,0,T,periodic_10ms,21,start
+21000,Core1_Core5,0,T,OS_Overhead,1,preempt
+21000,CANbus_polling_Trigger0,20,T,CANbus_polling,20,activate
+21000,Core3_Core2,0,T,CANbus_polling,20,start
+21000,CANbus_polling,20,SIG,CANbus_polling_trigg,0,read,15
+21000,EKF_Trigger0,13,T,EKF,13,activate
+21000,Planner_Trigger0,13,T,Planner,13,activate
+21000,Core4_Core0,0,T,Planner,13,start
+21000,Planner,13,SIG,Planner_trigg,0,read,15
+21000,Planner,13,SIG,vel_car,0,read,15
+21000,Planner,13,SIG,Lane_boundaries_host,0,read,15
+21000,Planner,13,SIG,Vehicle_status_host,0,read,15
+21000,Planner,13,SIG,Bounding_box_host,0,read,15
+21000,Planner,13,SIG,object_poses,0,read,15
+21000,Planner,13,SIG,lidar_input,0,read,15
+21000,Planner,13,SIG,bounding_boxes,0,read,15
+21000,Planner,13,SIG,yaw_car_host,0,read,15
+21000,Planner,13,SIG,y_car_host,0,read,15
+21000,Planner,13,SIG,fused_objects,0,read,15
+21000,Planner,13,SIG,yaw_rate,0,read,15
+21000,DASM_Trigger0,41,T,DASM,41,activate
+21000,Core1_Core5,0,T,DASM,41,start
+21000,DASM,41,SIG,DASM_trigg,0,read,15
+21000,DASM,41,SIG,speed_objective,0,read,15
+21000,DASM,41,SIG,steer_objective,0,read,15
+21100,CANbus_polling,20,SIG,Vehicle_status_host,0,write,1
+21100,CANbus_polling,20,SIG,CANbus_polling_fin,0,write,1
+21100,Core3_Core2,0,T,CANbus_polling,20,terminate
+21100,DASM,41,SIG,speed_objective,0,write,1
+21100,DASM,41,SIG,steer_objective,0,write,1
+21100,DASM,41,SIG,DASM_fin,0,write,1
+21100,Core1_Core5,0,T,DASM,41,terminate
+21100,Core1_Core5,0,T,OS_Overhead,1,resume
+21100,Core3_Core2,0,T,EKF,13,start
+21100,EKF,13,SIG,EKF_trigg,0,read,15
+21100,EKF,13,SIG,Vehicle_status_host,0,read,15
+21100,EKF,13,SIG,object_poses,0,read,15
+21100,EKF,13,SIG,yaw_car_host,0,read,15
+21100,EKF,13,SIG,y_car_host,0,read,15
+21300,PRE_Detection_gpu_POST,0,SIG,Image_host,0,write,1
+21300,PRE_Detection_gpu_POST,0,SIG,detection_stim_signal,0,write,1
+21300,Core2_Core4,0,T,PRE_Detection_gpu_POST,0,wait
+21300,Detection_Trigger0,0,T,Detection,0,activate
+21300,Core7_GP10B,0,T,Detection,0,start
+21300,Detection,0,SIG,Detection_trigg,0,read,15
+21300,Detection,0,SIG,Image_host,0,read,15
+21300,Detection,0,SIG,Bounding_box_device,0,read,15
+21400,EKF,13,SIG,object_poses,0,write,1
+21400,EKF,13,SIG,y_car_host,0,write,1
+21400,EKF,13,SIG,yaw_car_host,0,write,1
+21400,EKF,13,SIG,vel_car,0,write,1
+21400,EKF,13,SIG,yaw_rate,0,write,1
+21400,EKF,13,SIG,EKF_fin,0,write,1
+21400,Core3_Core2,0,T,EKF,13,terminate
+21400,Detection,0,SIG,Image_device,0,write,1
+21500,periodic_5ms,42,SIG,periodic_5ms_signal,0,write,1
+21500,Core0_compSched,0,T,periodic_5ms,42,terminate
+21500,Planner,13,SIG,fused_objects,0,write,1
+21500,periodic_5ms_Trigger0,43,T,periodic_5ms,43,activate
+21500,Core0_compSched,0,T,periodic_5ms,43,start
+21500,Core1_Core5,0,T,OS_Overhead,1,preempt
+21500,DASM_Trigger0,42,T,DASM,42,activate
+21500,Core1_Core5,0,T,DASM,42,start
+21500,DASM,42,SIG,DASM_trigg,0,read,15
+21500,DASM,42,SIG,speed_objective,0,read,15
+21500,DASM,42,SIG,steer_objective,0,read,15
+21600,DASM,42,SIG,speed_objective,0,write,1
+21600,DASM,42,SIG,steer_objective,0,write,1
+21600,DASM,42,SIG,DASM_fin,0,write,1
+21600,Core1_Core5,0,T,DASM,42,terminate
+21600,Core1_Core5,0,T,OS_Overhead,1,resume
+21900,Planner,13,SIG,speed_objective,0,write,1
+21900,Planner,13,SIG,steer_objective,0,write,1
+21900,Planner,13,SIG,Planner_fin,0,write,1
+21900,Core4_Core0,0,T,Planner,13,terminate
+22000,periodic_5ms,43,SIG,periodic_5ms_signal,0,write,1
+22000,Core0_compSched,0,T,periodic_5ms,43,terminate
+22000,periodic_10ms,21,SIG,periodic_10ms_signal,0,write,1
+22000,Core0_compSched,0,T,periodic_10ms,21,terminate
+22000,periodic_5ms_Trigger0,44,T,periodic_5ms,44,activate
+22000,Core0_compSched,0,T,periodic_5ms,44,start
+22000,periodic_10ms_Trigger0,22,T,periodic_10ms,22,activate
+22000,Core0_compSched,0,T,periodic_10ms,22,start
+22000,Core1_Core5,0,T,OS_Overhead,1,preempt
+22000,CANbus_polling_Trigger0,21,T,CANbus_polling,21,activate
+22000,Core3_Core2,0,T,CANbus_polling,21,start
+22000,CANbus_polling,21,SIG,CANbus_polling_trigg,0,read,15
+22000,DASM_Trigger0,43,T,DASM,43,activate
+22000,Core1_Core5,0,T,DASM,43,start
+22000,DASM,43,SIG,DASM_trigg,0,read,15
+22000,DASM,43,SIG,speed_objective,0,read,15
+22000,DASM,43,SIG,steer_objective,0,read,15
+22100,CANbus_polling,21,SIG,Vehicle_status_host,0,write,1
+22100,CANbus_polling,21,SIG,CANbus_polling_fin,0,write,1
+22100,Core3_Core2,0,T,CANbus_polling,21,terminate
+22100,DASM,43,SIG,speed_objective,0,write,1
+22100,DASM,43,SIG,steer_objective,0,write,1
+22100,DASM,43,SIG,DASM_fin,0,write,1
+22100,Core1_Core5,0,T,DASM,43,terminate
+22100,Core1_Core5,0,T,OS_Overhead,1,resume
+22500,periodic_5ms,44,SIG,periodic_5ms_signal,0,write,1
+22500,Core0_compSched,0,T,periodic_5ms,44,terminate
+22500,periodic_15ms,14,SIG,periodic_15ms_signal,0,write,1
+22500,Core0_compSched,0,T,periodic_15ms,14,terminate
+22500,periodic_5ms_Trigger0,45,T,periodic_5ms,45,activate
+22500,Core0_compSched,0,T,periodic_5ms,45,start
+22500,periodic_15ms_Trigger0,15,T,periodic_15ms,15,activate
+22500,Core0_compSched,0,T,periodic_15ms,15,start
+22500,Core1_Core5,0,T,OS_Overhead,1,preempt
+22500,EKF_Trigger0,14,T,EKF,14,activate
+22500,Core3_Core2,0,T,EKF,14,start
+22500,EKF,14,SIG,EKF_trigg,0,read,15
+22500,EKF,14,SIG,Vehicle_status_host,0,read,15
+22500,EKF,14,SIG,object_poses,0,read,15
+22500,EKF,14,SIG,yaw_car_host,0,read,15
+22500,EKF,14,SIG,y_car_host,0,read,15
+22500,Planner_Trigger0,14,T,Planner,14,activate
+22500,Core4_Core0,0,T,Planner,14,start
+22500,Planner,14,SIG,Planner_trigg,0,read,15
+22500,Planner,14,SIG,vel_car,0,read,15
+22500,Planner,14,SIG,Lane_boundaries_host,0,read,15
+22500,Planner,14,SIG,Vehicle_status_host,0,read,15
+22500,Planner,14,SIG,Bounding_box_host,0,read,15
+22500,Planner,14,SIG,object_poses,0,read,15
+22500,Planner,14,SIG,lidar_input,0,read,15
+22500,Planner,14,SIG,bounding_boxes,0,read,15
+22500,Planner,14,SIG,yaw_car_host,0,read,15
+22500,Planner,14,SIG,y_car_host,0,read,15
+22500,Planner,14,SIG,fused_objects,0,read,15
+22500,Planner,14,SIG,yaw_rate,0,read,15
+22500,DASM_Trigger0,44,T,DASM,44,activate
+22500,Core1_Core5,0,T,DASM,44,start
+22500,DASM,44,SIG,DASM_trigg,0,read,15
+22500,DASM,44,SIG,speed_objective,0,read,15
+22500,DASM,44,SIG,steer_objective,0,read,15
+22700,DASM,44,SIG,speed_objective,0,write,1
+22700,DASM,44,SIG,steer_objective,0,write,1
+22700,DASM,44,SIG,DASM_fin,0,write,1
+22700,Core1_Core5,0,T,DASM,44,terminate
+22700,Core1_Core5,0,T,OS_Overhead,1,resume
+22800,EKF,14,SIG,object_poses,0,write,1
+22800,EKF,14,SIG,y_car_host,0,write,1
+22800,EKF,14,SIG,yaw_car_host,0,write,1
+22800,EKF,14,SIG,vel_car,0,write,1
+22800,EKF,14,SIG,yaw_rate,0,write,1
+22800,EKF,14,SIG,EKF_fin,0,write,1
+22800,Core3_Core2,0,T,EKF,14,terminate
+23000,periodic_5ms,45,SIG,periodic_5ms_signal,0,write,1
+23000,Core0_compSched,0,T,periodic_5ms,45,terminate
+23000,periodic_10ms,22,SIG,periodic_10ms_signal,0,write,1
+23000,Core0_compSched,0,T,periodic_10ms,22,terminate
+23000,Planner,14,SIG,fused_objects,0,write,1
+23000,periodic_5ms_Trigger0,46,T,periodic_5ms,46,activate
+23000,Core0_compSched,0,T,periodic_5ms,46,start
+23000,periodic_10ms_Trigger0,23,T,periodic_10ms,23,activate
+23000,Core0_compSched,0,T,periodic_10ms,23,start
+23000,Core1_Core5,0,T,OS_Overhead,1,preempt
+23000,CANbus_polling_Trigger0,22,T,CANbus_polling,22,activate
+23000,Core3_Core2,0,T,CANbus_polling,22,start
+23000,CANbus_polling,22,SIG,CANbus_polling_trigg,0,read,15
+23000,DASM_Trigger0,45,T,DASM,45,activate
+23000,Core1_Core5,0,T,DASM,45,start
+23000,DASM,45,SIG,DASM_trigg,0,read,15
+23000,DASM,45,SIG,speed_objective,0,read,15
+23000,DASM,45,SIG,steer_objective,0,read,15
+23100,periodic_33ms,6,SIG,periodic_33ms_signal,0,write,1
+23100,Core0_compSched,0,T,periodic_33ms,6,terminate
+23100,CANbus_polling,22,SIG,Vehicle_status_host,0,write,1
+23100,CANbus_polling,22,SIG,CANbus_polling_fin,0,write,1
+23100,Core3_Core2,0,T,CANbus_polling,22,terminate
+23100,periodic_33ms_Trigger0,7,T,periodic_33ms,7,activate
+23100,Core0_compSched,0,T,periodic_33ms,7,start
+23100,Core5_Core1,0,T,PRE_Lane_detection_gpu_POST,0,park
+23100,PRE_SFM_gpu_POST_Trigger0,6,T,PRE_SFM_gpu_POST,6,activate
+23100,Core5_Core1,0,T,PRE_SFM_gpu_POST,6,start
+23100,PRE_SFM_gpu_POST,6,SIG,PRE_SFM_gpu_POST_trigg,0,read,15
+23100,PRE_SFM_gpu_POST,6,SIG,frame,0,read,15
+23100,Lidar_Grabber_Trigger0,6,T,Lidar_Grabber,6,activate
+23100,Core2_Core4,0,T,Lidar_Grabber,6,start
+23100,Lidar_Grabber,6,SIG,Camera.transient_failure,0,read,2
+23100,Lidar_Grabber,6,SIG,Lidar.permanent_failure,0,read,1
+23100,Lidar_Grabber,6,SIG,Lidar_Grabber_trigg,0,read,15
+23100,Lidar_Grabber,6,SIG,Lidar.transient_failure,0,read,1
+23100,Lidar_Grabber,6,SIG,sd_lidar,0,read,1
+23100,Lidar_Grabber,6,SIG,sd_camera,0,read,1
+23200,DASM,45,SIG,speed_objective,0,write,1
+23200,DASM,45,SIG,steer_objective,0,write,1
+23200,DASM,45,SIG,DASM_fin,0,write,1
+23200,Core1_Core5,0,T,DASM,45,terminate
+23200,Core1_Core5,0,T,OS_Overhead,1,resume
+23400,PRE_SFM_gpu_POST,6,SIG,SFM_stim_signal,0,write,1
+23400,Core5_Core1,0,T,PRE_SFM_gpu_POST,6,poll
+23400,SFM_Trigger0,6,T,SFM,6,activate
+23400,Core7_GP10B,0,T,SFM,6,start
+23400,SFM,6,SIG,SFM_trigg,0,read,15
+23400,SFM,6,SIG,Matrix_SFM_device,0,read,15
+23400,SFM,6,SIG,IMU_data_host,0,read,15
+23400,SFM,6,SIG,frame,0,read,15
+23400,Core7_GP10B,0,T,Detection,0,preempt
+23400,Planner,14,SIG,speed_objective,0,write,1
+23400,Planner,14,SIG,steer_objective,0,write,1
+23400,Planner,14,SIG,Planner_fin,0,write,1
+23400,Core4_Core0,0,T,Planner,14,terminate
+23500,periodic_5ms,46,SIG,periodic_5ms_signal,0,write,1
+23500,Core0_compSched,0,T,periodic_5ms,46,terminate
+23500,SFM,6,SIG,Image_SFM_device,0,write,1
+23500,SFM,6,SIG,IMU_data_device,0,write,1
+23500,periodic_5ms_Trigger0,47,T,periodic_5ms,47,activate
+23500,Core0_compSched,0,T,periodic_5ms,47,start
+23500,Core1_Core5,0,T,OS_Overhead,1,preempt
+23500,DASM_Trigger0,46,T,DASM,46,activate
+23500,Core1_Core5,0,T,DASM,46,start
+23500,DASM,46,SIG,DASM_trigg,0,read,15
+23500,DASM,46,SIG,speed_objective,0,read,15
+23500,DASM,46,SIG,steer_objective,0,read,15
+23600,Lidar_Grabber,6,SIG,lg_mode,0,write,1
+23600,Lidar_Grabber,6,SIG,lidar_output,0,write,1
+23600,Lidar_Grabber,6,SIG,lidar_input,0,write,1
+23700,DASM,46,SIG,speed_objective,0,write,1
+23700,DASM,46,SIG,steer_objective,0,write,1
+23700,DASM,46,SIG,DASM_fin,0,write,1
+23700,Core1_Core5,0,T,DASM,46,terminate
+23700,Core1_Core5,0,T,OS_Overhead,1,resume
+24000,periodic_5ms,47,SIG,periodic_5ms_signal,0,write,1
+24000,Core0_compSched,0,T,periodic_5ms,47,terminate
+24000,periodic_15ms,15,SIG,periodic_15ms_signal,0,write,1
+24000,Core0_compSched,0,T,periodic_15ms,15,terminate
+24000,periodic_10ms,23,SIG,periodic_10ms_signal,0,write,1
+24000,Core0_compSched,0,T,periodic_10ms,23,terminate
+24000,periodic_5ms_Trigger0,48,T,periodic_5ms,48,activate
+24000,Core0_compSched,0,T,periodic_5ms,48,start
+24000,periodic_15ms_Trigger0,16,T,periodic_15ms,16,activate
+24000,Core0_compSched,0,T,periodic_15ms,16,start
+24000,periodic_10ms_Trigger0,24,T,periodic_10ms,24,activate
+24000,Core0_compSched,0,T,periodic_10ms,24,start
+24000,Core1_Core5,0,T,OS_Overhead,1,preempt
+24000,CANbus_polling_Trigger0,23,T,CANbus_polling,23,activate
+24000,Core3_Core2,0,T,CANbus_polling,23,start
+24000,CANbus_polling,23,SIG,CANbus_polling_trigg,0,read,15
+24000,EKF_Trigger0,15,T,EKF,15,activate
+24000,Planner_Trigger0,15,T,Planner,15,activate
+24000,Core4_Core0,0,T,Planner,15,start
+24000,Planner,15,SIG,Planner_trigg,0,read,15
+24000,Planner,15,SIG,vel_car,0,read,15
+24000,Planner,15,SIG,Lane_boundaries_host,0,read,15
+24000,Planner,15,SIG,Vehicle_status_host,0,read,15
+24000,Planner,15,SIG,Bounding_box_host,0,read,15
+24000,Planner,15,SIG,object_poses,0,read,15
+24000,Planner,15,SIG,lidar_input,0,read,15
+24000,Planner,15,SIG,bounding_boxes,0,read,15
+24000,Planner,15,SIG,yaw_car_host,0,read,15
+24000,Planner,15,SIG,y_car_host,0,read,15
+24000,Planner,15,SIG,fused_objects,0,read,15
+24000,Planner,15,SIG,yaw_rate,0,read,15
+24000,DASM_Trigger0,47,T,DASM,47,activate
+24000,Core1_Core5,0,T,DASM,47,start
+24000,DASM,47,SIG,DASM_trigg,0,read,15
+24000,DASM,47,SIG,speed_objective,0,read,15
+24000,DASM,47,SIG,steer_objective,0,read,15
+24100,Lidar_Grabber,6,SIG,cg_mode,0,write,2
+24100,Lidar_Grabber,6,SIG,Lidar_Grabber_fin,0,write,1
+24100,Core2_Core4,0,T,Lidar_Grabber,6,terminate
+24100,CANbus_polling,23,SIG,Vehicle_status_host,0,write,1
+24100,CANbus_polling,23,SIG,CANbus_polling_fin,0,write,1
+24100,Core3_Core2,0,T,CANbus_polling,23,terminate
+24100,Core3_Core2,0,T,EKF,15,start
+24100,EKF,15,SIG,EKF_trigg,0,read,15
+24100,EKF,15,SIG,Vehicle_status_host,0,read,15
+24100,EKF,15,SIG,object_poses,0,read,15
+24100,EKF,15,SIG,yaw_car_host,0,read,15
+24100,EKF,15,SIG,y_car_host,0,read,15
+24200,DASM,47,SIG,speed_objective,0,write,1
+24200,DASM,47,SIG,steer_objective,0,write,1
+24200,DASM,47,SIG,DASM_fin,0,write,1
+24200,Core1_Core5,0,T,DASM,47,terminate
+24200,SFM,6,SIG,bounding_boxes,0,write,1
+24200,SFM,6,SIG,SFM_PRE_SFM_gpu_POST,0,write,1
+24200,SFM,6,SIG,SFM_fin,0,write,1
+24200,Core7_GP10B,0,T,SFM,6,terminate
+24200,Core1_Core5,0,T,OS_Overhead,1,resume
+24200,Core5_Core1,0,T,PRE_SFM_gpu_POST,6,run
+24200,PRE_SFM_gpu_POST,6,SIG,SFM_PRE_SFM_gpu_POST,0,read,15
+24200,PRE_SFM_gpu_POST,6,SIG,bounding_boxes,0,read,15
+24200,Core7_GP10B,0,T,Detection,0,resume
+24300,PRE_SFM_gpu_POST,6,SIG,SFM_PRE_SFM_gpu_POST,0,write,0
+24400,EKF,15,SIG,object_poses,0,write,1
+24400,EKF,15,SIG,y_car_host,0,write,1
+24400,EKF,15,SIG,yaw_car_host,0,write,1
+24400,EKF,15,SIG,vel_car,0,write,1
+24400,EKF,15,SIG,yaw_rate,0,write,1
+24400,EKF,15,SIG,EKF_fin,0,write,1
+24400,Core3_Core2,0,T,EKF,15,terminate

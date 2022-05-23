@@ -1,0 +1,338 @@
+// Copyright (C) 2022 by DLR e. V. 
+
+const FAULT_NOT_PRESENT=1;
+const FAULT_PRESENT=2;
+const BLACK=1;
+const RED=2;
+const GrabberMode_Normal=1;
+const GrabberMode_Recover=2;
+ports dummy[0]:=1 OS_Overhead_trigg OS_Overhead_fin[0]:=1 Lidar_Grabber_trigg Lidar_Grabber_fin[0]:=1 Lidar.transient_failure[0]:=FAULT_NOT_PRESENT Lidar.permanent_failure[0]:=FAULT_NOT_PRESENT Camera.permanent_failure[0]:=FAULT_NOT_PRESENT Camera.transient_failure[0]:=FAULT_NOT_PRESENT sd_lidar[0]:=1 lg_mode[0]:=GrabberMode_Normal lidar_output[0]:=1 lidar_input[0]:=1 sd_camera[0]:=1 cg_mode[0]:=GrabberMode_Normal Image_host[0]:=1 frame[0]:=1 Image_lane_lines_host[0]:=1 DASM_trigg DASM_fin[0]:=1 speed_objective[0]:=1 steer_objective[0]:=1 CANbus_polling_trigg CANbus_polling_fin[0]:=1 Vehicle_status_host[0]:=1 EKF_trigg EKF_fin[0]:=1 object_poses[0]:=1 y_car_host[0]:=1 yaw_car_host[0]:=1 vel_car[0]:=1 yaw_rate[0]:=1 Planner_trigg Planner_fin[0]:=1 bounding_boxes[0]:=1 fused_objects[0]:=1 Lane_boundaries_host[0]:=1 Bounding_box_host[0]:=1 PRE_SFM_gpu_POST_trigg PRE_SFM_gpu_POST_fin[0]:=1 SFM_PRE_SFM_gpu_POST[0]:=0 PRE_Localization_gpu_POST_trigg PRE_Localization_gpu_POST_fin[0]:=1 Localization_GPU_PRE_Localization_gpu_POST[0]:=0 PRE_Lane_detection_gpu_POST_trigg PRE_Lane_detection_gpu_POST_fin[0]:=1 Lane_detect_GPU_PRE_Lane_detection_gpu_POST[0]:=0 PRE_Detection_gpu_POST_trigg PRE_Detection_gpu_POST_fin[0]:=1 Detect_PRE_Detection_gpu_POST[0]:=0 SFM_trigg SFM_fin[0]:=1 IMU_data_host[0]:=1 Image_SFM_device[0]:=1 IMU_data_device[0]:=1 Matrix_SFM_device[0]:=1 Localization_trigg Localization_fin[0]:=1 Cloud_map_device[0]:=1 Vehicle_status_device[0]:=1 x_car_device[0]:=1 y_car_device[0]:=1 yaw_car_device[0]:=1 Lane_detection_trigg Lane_detection_fin[0]:=1 Image_lane_lines_device[0]:=1 Lane_boundaries_device[0]:=1 Detection_trigg Detection_fin[0]:=1 Image_device[0]:=1 Bounding_box_device[0]:=1;
+
+signal periodic_100ms_signal -> OS_Overhead_trigg;
+signal periodic_33ms_signal -> Lidar_Grabber_trigg PRE_SFM_gpu_POST_trigg;
+signal periodic_5ms_signal -> DASM_trigg;
+signal periodic_10ms_signal -> CANbus_polling_trigg;
+signal periodic_15ms_signal -> EKF_trigg Planner_trigg;
+signal SFM_stim_signal -> SFM_trigg;
+signal periodic_400ms_signal -> PRE_Localization_gpu_POST_trigg;
+signal Localization_stim_signal -> Localization_trigg;
+signal periodic_66ms_signal -> PRE_Lane_detection_gpu_POST_trigg;
+signal Lane_detection_stim_signal -> Lane_detection_trigg;
+signal periodic_200ms_signal -> PRE_Detection_gpu_POST_trigg;
+signal detection_stim_signal -> Detection_trigg;
+source periodic_100ms [100,100] periodic_100ms_signal!1;
+source periodic_33ms [33,33] periodic_33ms_signal!1;
+source periodic_5ms [5,5] periodic_5ms_signal!1;
+source periodic_10ms [10,10] periodic_10ms_signal!1;
+source periodic_15ms [15,15] periodic_15ms_signal!1;
+source periodic_400ms [400,400] periodic_400ms_signal!1;
+source periodic_66ms [66,66] periodic_66ms_signal!1;
+source periodic_200ms [200,200] periodic_200ms_signal!1;
+sched_fpp Core5:
+
+  task DASM @PRIO = 3: 
+    trigger in (I, 0) on  DASM_trigg: 
+      case DASM_trigg?*, steer_objective==*, speed_objective==*: 
+        after [1,2] write speed_objective:=BLACK, steer_objective:=BLACK, DASM_fin:=1;
+        goto (I, 0); 
+  endtask;
+  task OS_Overhead: 
+    trigger in (I, 0) on  OS_Overhead_trigg: 
+      case OS_Overhead_trigg?*: 
+        after [50,50] write OS_Overhead_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp Core4:
+
+  task Lidar_Grabber @PRIO = 8: 
+    trigger in (I, 0) on  Lidar_Grabber_trigg: 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=BLACK, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar.transient_failure==FAULT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=BLACK, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.permanent_failure==FAULT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.transient_failure==FAULT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=BLACK, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==BLACK, sd_camera==BLACK: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 0); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.transient_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+    trigger in (I, 0) on  Lidar_Grabber_trigg: 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.transient_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+    trigger in (I, 1) on  Lidar_Grabber_trigg: 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_NOT_PRESENT, Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Normal, lidar_output:=BLACK, lidar_input:=BLACK;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar.transient_failure==FAULT_PRESENT, Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Lidar.transient_failure==FAULT_PRESENT, Camera.transient_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_NOT_PRESENT, Camera.transient_failure==FAULT_NOT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Normal, Image_host:=BLACK, frame:=RED, Image_lane_lines_host:=BLACK, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.permanent_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+      case Lidar_Grabber_trigg?*, Camera.transient_failure==FAULT_PRESENT, Lidar.permanent_failure==FAULT_PRESENT, sd_lidar==*, sd_camera==*: 
+        after [5,7] write lg_mode:=GrabberMode_Recover;
+        after [5,7] write cg_mode:=GrabberMode_Recover, Lidar_Grabber_fin:=1;
+        goto (I, 1); 
+  endtask;
+  task PRE_Detection_gpu_POST @PRIO = 4: 
+    trigger in (I, 0) on  PRE_Detection_gpu_POST_trigg: 
+      case PRE_Detection_gpu_POST_trigg?*, Image_host==*: 
+        after [3,4] write Image_host:=BLACK, detection_stim_signal!1;
+        goto (W, 1); 
+    trigger in (W, 1) on  Detect_PRE_Detection_gpu_POST: 
+      case Detect_PRE_Detection_gpu_POST==*, Bounding_box_host==*: 
+        after [1,1] write Detect_PRE_Detection_gpu_POST:=0;
+        after [1,1] write Bounding_box_host:=BLACK, PRE_Detection_gpu_POST_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp Core2:
+
+  task CANbus_polling @PRIO = 5: 
+    trigger in (I, 0) on  CANbus_polling_trigg: 
+      case CANbus_polling_trigg?*: 
+        after [1,1] write Vehicle_status_host:=BLACK, CANbus_polling_fin:=1;
+        goto (I, 0); 
+  endtask;
+  task EKF @PRIO = 1: 
+    trigger in (I, 0) on  EKF_trigg: 
+      case EKF_trigg?*, y_car_host==*, Vehicle_status_host==*, yaw_car_host==*, object_poses==*: 
+        after [3,5] write object_poses:=BLACK, y_car_host:=BLACK, yaw_car_host:=BLACK, vel_car:=BLACK, yaw_rate:=BLACK, EKF_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp Core0:
+
+  task Planner @PRIO = 9: 
+    trigger in (I, 0) on  Planner_trigg: 
+      case Planner_trigg?*, y_car_host==*, Lane_boundaries_host==*, lidar_input==*, bounding_boxes==*, yaw_car_host==*, Vehicle_status_host==*, object_poses==*, Bounding_box_host==*, fused_objects==*, vel_car==*, yaw_rate==*: 
+        after [5,5] write fused_objects:=BLACK;
+        after [4,8] write speed_objective:=BLACK, steer_objective:=BLACK, Planner_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp Core1:
+
+  task PRE_SFM_gpu_POST @PRIO = 6: 
+    trigger in (I, 0) on  PRE_SFM_gpu_POST_trigg: 
+      case PRE_SFM_gpu_POST_trigg?*, frame==BLACK: 
+        after [2,4] write SFM_stim_signal!1;
+        goto (A, 2); 
+      case PRE_SFM_gpu_POST_trigg?*, frame==*: 
+        after [2,4] write SFM_stim_signal!1;
+        goto (A, 3); 
+    trigger in (A, 2) on  SFM_PRE_SFM_gpu_POST: 
+      case SFM_PRE_SFM_gpu_POST==*, bounding_boxes==BLACK: 
+        after [1,1] write SFM_PRE_SFM_gpu_POST:=0;
+        after [1,3] write bounding_boxes:=BLACK, PRE_SFM_gpu_POST_fin:=1;
+        goto (I, 0); 
+      case SFM_PRE_SFM_gpu_POST==*, bounding_boxes==*: 
+        after [1,1] write SFM_PRE_SFM_gpu_POST:=0;
+        after [1,3] write bounding_boxes:=RED, PRE_SFM_gpu_POST_fin:=1;
+        goto (I, 1); 
+    trigger in (I, 1) on  PRE_SFM_gpu_POST_trigg: 
+      case PRE_SFM_gpu_POST_trigg?*, frame==*: 
+        after [2,4] write SFM_stim_signal!1;
+        goto (A, 3); 
+    trigger in (A, 3) on  SFM_PRE_SFM_gpu_POST: 
+      case SFM_PRE_SFM_gpu_POST==*, bounding_boxes==*: 
+        after [1,1] write SFM_PRE_SFM_gpu_POST:=0;
+        after [1,3] write bounding_boxes:=RED, PRE_SFM_gpu_POST_fin:=1;
+        goto (I, 1); 
+  endtask;
+  task PRE_Lane_detection_gpu_POST @PRIO = 2: 
+    trigger in (I, 0) on  PRE_Lane_detection_gpu_POST_trigg: 
+      case PRE_Lane_detection_gpu_POST_trigg?*, Image_lane_lines_host==*: 
+        after [3,4] write Image_lane_lines_host:=BLACK, Lane_detection_stim_signal!1;
+        goto (A, 1); 
+    trigger in (A, 1) on  Lane_detect_GPU_PRE_Lane_detection_gpu_POST: 
+      case Lane_detect_GPU_PRE_Lane_detection_gpu_POST==*, Lane_boundaries_host==*: 
+        after [1,1] write Lane_detect_GPU_PRE_Lane_detection_gpu_POST:=0;
+        after [1,4] write Lane_boundaries_host:=BLACK, PRE_Lane_detection_gpu_POST_fin:=1;
+        goto (I, 0); 
+  endtask;
+  task Lane_detection @PRIO = 2: 
+    trigger in (I, 0) on  Lane_detection_trigg: 
+      case Lane_detection_trigg?*, Image_lane_lines_host==*, Lane_boundaries_device==*: 
+        after [1,1] write Image_lane_lines_device:=BLACK;
+        after [37,42] write Lane_boundaries_host:=BLACK, Lane_detect_GPU_PRE_Lane_detection_gpu_POST:=1, Lane_detection_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp Core3:
+
+  task PRE_Localization_gpu_POST @PRIO = 4: 
+    trigger in (I, 0) on  PRE_Localization_gpu_POST_trigg: 
+      case PRE_Localization_gpu_POST_trigg?*, Vehicle_status_host==*, lidar_output==*: 
+        after [3,9] write Vehicle_status_host:=BLACK, Localization_stim_signal!1;
+        goto (A, 1); 
+    trigger in (A, 1) on  Localization_GPU_PRE_Localization_gpu_POST: 
+      case Localization_GPU_PRE_Localization_gpu_POST==*, y_car_host==*, yaw_car_host==*, object_poses==*: 
+        after [1,1] write Localization_GPU_PRE_Localization_gpu_POST:=0;
+        after [3,8] write object_poses:=BLACK, y_car_host:=BLACK, yaw_car_host:=BLACK, PRE_Localization_gpu_POST_fin:=1;
+        goto (I, 0); 
+  endtask;
+  task Localization @PRIO = 4 @BUDGET = 50: 
+    trigger in (I, 0) on  Localization_trigg: 
+      case Localization_trigg?*, x_car_device==*, Vehicle_status_host==*, yaw_car_device==*, lidar_output==*, y_car_device==*: 
+        after [1,1] write Cloud_map_device:=BLACK, Vehicle_status_device:=BLACK;
+        after [365,387] write object_poses:=BLACK, y_car_host:=BLACK, yaw_car_host:=BLACK, Localization_GPU_PRE_Localization_gpu_POST:=1, Localization_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+sched_fpp GP10B:
+
+  task SFM @PRIO = 1 @BUDGET = 7: 
+    trigger in (I, 0) on  SFM_trigg: 
+      case SFM_trigg?*, IMU_data_host==BLACK, Matrix_SFM_device==BLACK, frame==BLACK: 
+        after [1,1] write Image_SFM_device:=BLACK, IMU_data_device:=BLACK;
+        after [6,7] write bounding_boxes:=BLACK, SFM_PRE_SFM_gpu_POST:=1, SFM_fin:=1;
+        goto (I, 0); 
+      case SFM_trigg?*, IMU_data_host==*, Matrix_SFM_device==*, frame==*: 
+        after [1,1] write Image_SFM_device:=BLACK, IMU_data_device:=BLACK;
+        after [6,7] write bounding_boxes:=RED, SFM_PRE_SFM_gpu_POST:=1, SFM_fin:=1;
+        goto (I, 1); 
+    trigger in (I, 1) on  SFM_trigg: 
+      case SFM_trigg?*, IMU_data_host==*, Matrix_SFM_device==*, frame==*: 
+        after [1,1] write Image_SFM_device:=BLACK, IMU_data_device:=BLACK;
+        after [6,7] write bounding_boxes:=RED, SFM_PRE_SFM_gpu_POST:=1, SFM_fin:=1;
+        goto (I, 1); 
+  endtask;
+  task Detection @BUDGET = 50: 
+    trigger in (I, 0) on  Detection_trigg: 
+      case Detection_trigg?*, Image_host==*, Bounding_box_device==*: 
+        after [1,1] write Image_device:=BLACK;
+        after [107,115] write Bounding_box_host:=BLACK, Detect_PRE_Detection_gpu_POST:=1, Detection_fin:=1;
+        goto (I, 0); 
+  endtask;
+endsched;
+
+//Reaction(frame, bounding_boxes) within [20,55]ms
+obs C5__G:
+  mode 0:
+  -- frame!RED  -> 1;
+  mode 1 [55]:
+  -- bounding_boxes!RED [20, 55] -> 0;
+endobs;
+property C5__G.mode != BAD;
+
