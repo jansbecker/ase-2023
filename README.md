@@ -4,7 +4,7 @@ This repository contains the evaluation model for the paper
 
 Jan Steffen Becker, Björn Koopmann and Ingo Stierand: *"Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms"*, submitted to FMICS 2022
 
-It is based on the [MobSTr data set](https://github.com/panorama-research/mobstr-dataset/releases/tag/2021-06) created by 
+It is based on the [MobSTr dataset](https://github.com/panorama-research/mobstr-dataset/releases/tag/2021-06) created by 
 
 * Salome Maro, Chalmers University of Technology | University of Gothenburg
 * Jan-Philipp Steghöfer, Chalmers University of Technology | University of Gothenburg
@@ -19,11 +19,11 @@ It is based on the [MobSTr data set](https://github.com/panorama-research/mobstr
 * Mikael Köse Jansson, University of Gothenburg
 * Lukas Krawczyk, University of Applied Sciences and Arts, Dortmund
 
-The repository contains only those parts of the MobSTr data set that are relevant for the above publication, for the followwing reasons:
+The repository contains only those parts of the MobSTr dataset that are relevant for the above publication, for the followwing reasons:
 
-* MobSTr provides a rich set of different artifacts, and only a few of them are relevant for the publication. Hence, it may be hard to find the relevant contributions in the complete data set.
-* The AMALTHEA models have been migrated from app4mc-1.0.0 to app4mc-2.0.0 which is not yet (i.e., at time of writing) targeted by the official [CAPRA release](https://projects.eclipse.org/projects/modeling.capra/releases/0.8.2). This breaks the installation instructions for the original data set. 
-* Some parts of the model have been changed in order to fit the application of the paper. This leads to inconsistencies with other artifacts in the original MobSTr data set. 
+* MobSTr provides a rich set of different artifacts, and only a few of them are relevant for the publication. Hence, it may be hard to find the relevant contributions in the complete dataset.
+* The AMALTHEA models have been migrated from app4mc-1.0.0 to app4mc-2.0.0 which is not yet (i.e., at time of writing) targeted by the official [CAPRA release](https://projects.eclipse.org/projects/modeling.capra/releases/0.8.2). This breaks the installation instructions for the original dataset. 
+* Some parts of the model have been changed in order to fit the application of the paper. This leads to inconsistencies with other artifacts in the original MobSTr dataset. 
 
 The contained files are
 
