@@ -2,7 +2,7 @@
 
 This repository contains the evaluation model for the paper
 
-Jan Steffen Becker, Björn Koopmann and Ingo Stierand: *"Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms"*, submitted to FMICS 2022
+Jan Steffen Becker, Björn Koopmann, Lukas Westhofen, and Ingo Stierand: *"Providing Evidence for Correct and Timely Functioning of Software Safety Mechanisms"*, submitted to ASE 2023
 
 It is based on the [MobSTr dataset](https://github.com/panorama-research/mobstr-dataset/releases/tag/2021-06) created by 
 
